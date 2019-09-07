@@ -30,5 +30,5 @@ yarn-debug.log*
 yarn-error.log*
 
 # Project Requirement
-.odt
-.odt#
+*.odt
+*.odt#
