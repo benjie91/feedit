@@ -1,0 +1,4 @@
+rootProject.name = 'feedit'
+
+include('feedit-server')
+include('feedit-frontend')
