@@ -1,0 +1,12 @@
+description = "Feedit - A feedback visualization system"
+
+def vProject = '1.0.0'
+def vJavaLang = '1.8'
+
+wrapper.gradleVersion = "5.2.1"
+
+configure(allProjects) {
+  group = "io.feedit"
+
+  ext.projectVersion = vProject
+}
