@@ -5,8 +5,8 @@ def vJavaLang = '1.8'
 
 wrapper.gradleVersion = "5.6.2"
 
-configure(allProjects) {
-  group = "io.feedit"
-
-  ext.projectVersion = vProject
-}
+//configure(allProjects) {
+//  group = "io.feedit"
+//
+//  ext.projectVersion = vProject
+//}
