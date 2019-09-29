@@ -13,7 +13,6 @@ class FeedbackController {
 
     @GetMapping("/retrieve/{systemName}")
     fun retrieveSystemFeedback(@PathVariable systemName: String): String {
-
         return "Test MOCK api call"
     }
 

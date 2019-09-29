@@ -1,5 +1,16 @@
 package io.feedit.server.domain
 
-data class Feedback(
-    val id: Long
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
+
+@Entity
+class Feedback(
+    @Id @GeneratedValue val id: Long? = null,
+    val user: String,
+    val userGroup: String,
+    val systemId: Long,
+    val feedback: String
 )
+
