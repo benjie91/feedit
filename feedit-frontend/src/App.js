@@ -3,13 +3,19 @@ import { HashRouter as Router, Route } from 'react-router-dom';
 
 import LandingPage from './containers/LandingPage';
 import Navigation from './components/Navigation';
+import DashboardPage from './containers/DashboardPage';
+import HomePage from './containers/HomePage';
 
-import './assets/feedit-theme.css'
+import './assets/feedit-theme.css';
 
 const App = () => (
   <Router>
     <Navigation />
     <Route exact path="/" component={LandingPage} />
+    {/*<Route exact path="/" component={DashboardPage} />*/}
+    {/*<Route exact path="/dashboard" component={LandingPage} />*/}
+    <Route exact path="/home" component={HomePage} />
+    <Route exact path="/dashboard" component={DashboardPage} />
   </Router>
 );
 
