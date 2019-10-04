@@ -4,5 +4,5 @@ import io.feedit.server.domain.Feedback
 import org.springframework.data.repository.CrudRepository
 
 interface FeedbackRepository : CrudRepository<Feedback, Long> {
-    fun findByUser(user: String): Feedback?
+    fun findByUserPerson(userPerson: String): Feedback?
 }

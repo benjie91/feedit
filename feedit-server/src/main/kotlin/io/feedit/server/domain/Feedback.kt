@@ -8,7 +8,7 @@ import javax.persistence.Id
 @Entity
 class Feedback(
     @Id @GeneratedValue val id: Long? = null,
-    val user: String,
+    val userPerson: String,
     val userGroup: String,
     val systemId: Long,
     val feedback: String
