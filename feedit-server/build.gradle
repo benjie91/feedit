@@ -27,7 +27,14 @@ dependencies {
   runtimeOnly("org.springframework.boot:spring-boot-devtools")
 
   // Junit 5 for testing
-  testImplementation("org.springframework.boot:spring-boot-starter-test")  // To exclude Junit
+  testImplementation("org.springframework.boot:spring-boot-starter-test") {
+    exclude group: "junit", module: "junit"
+  }
   testImplementation("org.junit.jupiter:junit-jupiter-api")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+  testImplementation("com.ninja-squad:springmockk:1.1.2")
+}
+
+test {
+  useJUnitPlatform()
 }
