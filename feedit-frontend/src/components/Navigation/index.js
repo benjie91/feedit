@@ -1,7 +1,6 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 
-import {Navbar, Nav, NavDropdown, Form, FormControl, Button} from "react-bootstrap";
-// import Navbar from 'react-bootstrap/Navbar'
+import { Nav, Navbar } from 'react-bootstrap';
 
 const Navigation = () => {
   useEffect(() => {
@@ -15,10 +14,10 @@ const Navigation = () => {
       });
   });
 
-  return(
+  return (
     <Navbar bg="light" expand="lg">
       <Navbar.Brand href="#home">Feedit</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <Nav.Link href="#home">Home</Nav.Link>
