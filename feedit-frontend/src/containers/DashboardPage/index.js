@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
-// import './App.css';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
@@ -13,40 +11,41 @@ class DashboardPage extends Component {
         {
           headerName: 'System ID',
           field: 'sid',
-          sortable: true,
-          filter: true,
+          width: 110,
         },
         {
           headerName: 'Feedback',
           field: 'fb',
-          sortable: true,
-          filter: true,
+          width: 300,
         },
         {
           headerName: 'Feedback Target',
           field: 'fbt',
-          sortable: true,
-          filter: true,
+          width: 150,
         },
         {
           headerName: 'User ID',
           field: 'uid',
-          sortable: true,
-          filter: true,
+          width: 90,
         },
         {
           headerName: 'User Group',
           field: 'ug',
-          sortable: true,
-          filter: true,
+          width: 120,
         },
         {
           headerName: 'Time Stamp',
           field: 'ts',
-          sortable: true,
-          filter: true,
+          width: 150,
         },
       ],
+      defaultColDef: {
+        suppressSizeToFit: true,
+        resizable: true,
+        sortable: true,
+        filter: true,
+      },
+
       rowData: [
         {
           sid: 'App01',
@@ -249,14 +248,15 @@ class DashboardPage extends Component {
       <div
         className="ag-theme-balham"
         style={{
-          height: '500px',
-          width: '1280px',
+          height: '1000px',
+          width: '1000px',
         }}
       >
         <AgGridReact
           columnDefs={this.state.columnDefs}
           rowData={this.state.rowData}
-        ></AgGridReact>
+          defaultColDef={this.state.defaultColDef}
+        />
       </div>
     );
   }
