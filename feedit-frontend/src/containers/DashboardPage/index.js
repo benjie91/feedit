@@ -14,11 +14,6 @@ class DashboardPage extends Component {
           width: 110,
         },
         {
-          headerName: 'Feedback',
-          field: 'fb',
-          width: 300,
-        },
-        {
           headerName: 'Feedback Target',
           field: 'fbt',
           width: 150,
@@ -37,6 +32,11 @@ class DashboardPage extends Component {
           headerName: 'Time Stamp',
           field: 'ts',
           width: 150,
+        },
+        {
+          headerName: 'Feedback',
+          field: 'fb',
+          width: 300,
         },
       ],
       defaultColDef: {
@@ -248,15 +248,32 @@ class DashboardPage extends Component {
       <div
         className="ag-theme-balham"
         style={{
-          height: '1000px',
-          width: '1000px',
+          height: '100%',
+          width: '100%',
         }}
       >
-        <AgGridReact
-          columnDefs={this.state.columnDefs}
-          rowData={this.state.rowData}
-          defaultColDef={this.state.defaultColDef}
-        />
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <div style={{ overflow: 'hidden', flexGrow: '1' }}>
+            <div
+              style={{
+                height: '100%',
+                width: '100%',
+              }}
+              // className="ag-theme-balham"
+            >
+              <AgGridReact
+                columnDefs={this.state.columnDefs}
+                rowData={this.state.rowData}
+                defaultColDef={this.state.defaultColDef}
+              />
+            </div>
+          </div>
+          &nbsp;
+          <div style={{ backgroundColor: '#ccc', padding: '20rem' }}>
+            right side column
+          </div>
+          <br />
+        </div>
       </div>
     );
   }
