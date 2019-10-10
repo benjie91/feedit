@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
+import BarChart from './BarChart';
 
 class DashboardPage extends Component {
   constructor(props) {
@@ -61,7 +62,7 @@ class DashboardPage extends Component {
           fbt: 'Generic',
           uid: 23456,
           ug: 'Department B',
-          ts: '08/09/2019 15:22',
+          ts: '07/09/2019 15:22',
         },
         {
           sid: 'App01',
@@ -72,12 +73,28 @@ class DashboardPage extends Component {
           ts: '08/09/2019 15:22',
         },
         {
+          sid: 'App01',
+          fb: 'Hello',
+          fbt: 'Generic',
+          uid: 34567,
+          ug: 'Department A',
+          ts: '09/09/2019 15:22',
+        },
+        {
+          sid: 'App01',
+          fb: 'World',
+          fbt: 'Generic',
+          uid: 34567,
+          ug: 'Department A',
+          ts: '09/09/2019 15:22',
+        },
+        {
           sid: 'App02',
           fb: 'Good Job!',
           fbt: 'Generic',
           uid: 45678,
           ug: 'Department B',
-          ts: '08/09/2019 15:22',
+          ts: '07/09/2019 15:22',
         },
         {
           sid: 'App02',
@@ -101,7 +118,7 @@ class DashboardPage extends Component {
           fbt: 'Generic',
           uid: 23456,
           ug: 'Department A',
-          ts: '08/09/2019 15:22',
+          ts: '07/09/2019 15:22',
         },
         {
           sid: 'App03',
@@ -117,7 +134,7 @@ class DashboardPage extends Component {
           fbt: 'Generic',
           uid: 45678,
           ug: 'Department A',
-          ts: '08/09/2019 15:22',
+          ts: '07/09/2019 15:22',
         },
         {
           sid: 'App04',
@@ -133,7 +150,7 @@ class DashboardPage extends Component {
           fbt: 'Generic',
           uid: 12345,
           ug: 'Department A',
-          ts: '08/09/2019 15:22',
+          ts: '07/09/2019 15:22',
         },
         {
           sid: 'App04',
@@ -149,7 +166,7 @@ class DashboardPage extends Component {
           fbt: 'Generic',
           uid: 34567,
           ug: 'Department A',
-          ts: '08/09/2019 15:22',
+          ts: '07/09/2019 15:22',
         },
         {
           sid: 'App05',
@@ -168,12 +185,28 @@ class DashboardPage extends Component {
           ts: '08/09/2019 15:22',
         },
         {
+          sid: 'App05',
+          fb: 'Hello',
+          fbt: 'Generic',
+          uid: 56789,
+          ug: 'Department A',
+          ts: '09/09/2019 15:22',
+        },
+        {
+          sid: 'App05',
+          fb: 'World',
+          fbt: 'Generic',
+          uid: 56789,
+          ug: 'Department A',
+          ts: '09/09/2019 15:22',
+        },
+        {
           sid: 'App06',
           fb: 'Good job!',
           fbt: 'Generic',
           uid: 12345,
           ug: 'Department B',
-          ts: '08/09/2019 15:22',
+          ts: '07/09/2019 15:22',
         },
         {
           sid: 'App06',
@@ -189,7 +222,7 @@ class DashboardPage extends Component {
           fbt: 'Generic',
           uid: 34567,
           ug: 'Department B',
-          ts: '08/09/2019 15:22',
+          ts: '07/09/2019 15:22',
         },
         {
           sid: 'App07',
@@ -205,7 +238,7 @@ class DashboardPage extends Component {
           fbt: 'Generic',
           uid: 56789,
           ug: 'Department B',
-          ts: '08/09/2019 15:22',
+          ts: '07/09/2019 15:22',
         },
         {
           sid: 'App07',
@@ -229,7 +262,7 @@ class DashboardPage extends Component {
           fbt: 'Generic',
           uid: 34567,
           ug: 'Department A',
-          ts: '08/09/2019 15:22',
+          ts: '07/09/2019 15:22',
         },
         {
           sid: 'App08',
@@ -248,7 +281,7 @@ class DashboardPage extends Component {
       <div
         className="ag-theme-balham"
         style={{
-          height: '100%',
+          height: '90%',
           width: '100%',
         }}
       >
@@ -259,7 +292,6 @@ class DashboardPage extends Component {
                 height: '100%',
                 width: '100%',
               }}
-              // className="ag-theme-balham"
             >
               <AgGridReact
                 columnDefs={this.state.columnDefs}
@@ -269,10 +301,7 @@ class DashboardPage extends Component {
             </div>
           </div>
           &nbsp;
-          <div style={{ backgroundColor: '#ccc', padding: '20rem' }}>
-            right side column
-          </div>
-          <br />
+          <BarChart />
         </div>
       </div>
     );
