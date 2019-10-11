@@ -278,31 +278,20 @@ class DashboardPage extends Component {
 
   render() {
     return (
-      <div
-        className="ag-theme-balham"
-        style={{
-          height: '90%',
-          width: '100%',
-        }}
-      >
-        <div style={{ display: 'flex', flexDirection: 'row' }}>
-          <div style={{ overflow: 'hidden', flexGrow: '1' }}>
-            <div
-              style={{
-                height: '100%',
-                width: '100%',
-              }}
-            >
-              <AgGridReact
-                columnDefs={this.state.columnDefs}
-                rowData={this.state.rowData}
-                defaultColDef={this.state.defaultColDef}
-              />
-            </div>
-          </div>
-          &nbsp;
-          <BarChart />
+      <div style={{ display: 'flex' }}>
+        <div
+          className="ag-theme-balham"
+          style={{
+            width: '100%',
+          }}
+        >
+          <AgGridReact
+            columnDefs={this.state.columnDefs}
+            rowData={this.state.rowData}
+            defaultColDef={this.state.defaultColDef}
+          />
         </div>
+        <BarChart />
       </div>
     );
   }
