@@ -1,1 +1,7 @@
 @import 'bootstrap.min.css';
+@import '~ag-grid-community/dist/styles/ag-grid.css';
+@import '~ag-grid-community/dist/styles/ag-theme-balham.css';
+
+.feedit-bg-lightblue {
+  background-color: #c5e3f1;
+}

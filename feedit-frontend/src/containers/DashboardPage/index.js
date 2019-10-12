@@ -1,53 +1,14 @@
 import React, { Component } from 'react';
-import { AgGridReact } from 'ag-grid-react';
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-balham.css';
-import BarChart from './BarChart';
+
+import { Container, Row, Col } from 'react-bootstrap';
+import FeedbackDataGrid from '../../components/FeedbackDataGrid';
+import BarChart from '../../components/BarChart';
 
 class DashboardPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      columnDefs: [
-        {
-          headerName: 'System ID',
-          field: 'sid',
-          width: 110,
-        },
-        {
-          headerName: 'Feedback Target',
-          field: 'fbt',
-          width: 150,
-        },
-        {
-          headerName: 'User ID',
-          field: 'uid',
-          width: 90,
-        },
-        {
-          headerName: 'User Group',
-          field: 'ug',
-          width: 120,
-        },
-        {
-          headerName: 'Time Stamp',
-          field: 'ts',
-          width: 150,
-        },
-        {
-          headerName: 'Feedback',
-          field: 'fb',
-          width: 300,
-        },
-      ],
-      defaultColDef: {
-        suppressSizeToFit: true,
-        resizable: true,
-        sortable: true,
-        filter: true,
-      },
-
-      rowData: [
+      feedbackData: [
         {
           sid: 'App01',
           fb: 'The system is not easy to use.',
@@ -278,21 +239,16 @@ class DashboardPage extends Component {
 
   render() {
     return (
-      <div style={{ display: 'flex' }}>
-        <div
-          className="ag-theme-balham"
-          style={{
-            width: '100%',
-          }}
-        >
-          <AgGridReact
-            columnDefs={this.state.columnDefs}
-            rowData={this.state.rowData}
-            defaultColDef={this.state.defaultColDef}
-          />
-        </div>
-        <BarChart />
-      </div>
+      <React.Fragment>
+        <Row>
+          <Col md={6}>
+            <FeedbackDataGrid feedbackData={this.state.feedbackData} />
+          </Col>
+          <Col md={6}>
+            <BarChart />
+          </Col>
+        </Row>
+      </React.Fragment>
     );
   }
 }

@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 
 import { Nav, Navbar } from 'react-bootstrap';
 
+import mainLogo from '../../assets/images/monster.svg';
+
 const Navigation = () => {
   useEffect(() => {
     fetch('/api/feedback/retrieve/test')
@@ -15,9 +17,17 @@ const Navigation = () => {
   });
 
   return (
-    <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="#home">Feedit</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+    <Navbar className="feedit-bg-lightblue">
+      <Navbar.Brand href="#home">
+        <img
+          src={mainLogo}
+          style={{ marginRight: '15px' }}
+          width="30"
+          height="30"
+          className="d-inline-block align-top"
+        />
+        <span>Feedit</span>
+      </Navbar.Brand>
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <Nav.Link href="#home">Home</Nav.Link>
