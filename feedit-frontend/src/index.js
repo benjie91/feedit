@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import App from './App';
 
+import './utils/FontAwesomeLibrary';
 import './assets/feedit-theme.css';
 
 ReactDOM.render(<App />, document.getElementById('root'));

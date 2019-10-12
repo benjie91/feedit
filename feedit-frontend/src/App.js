@@ -16,7 +16,8 @@ const App = () => {
         <SideMenu style={{ position: 'fixed', width: `${sideMenuWidth}px` }} />
         <div
           style={{
-            marginLeft: `${sideMenuWidth}px`,
+            position: 'sticky',
+            left: `${sideMenuWidth}px`,
             width: `calc(100% - ${sideMenuWidth}px)`,
             padding: '5px',
           }}
