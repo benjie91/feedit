@@ -17,7 +17,11 @@ const Navigation = () => {
   });
 
   return (
-    <Navbar className="feedit-bg-lightblue">
+    <Navbar
+      className="feedit-bg-lightblue"
+      style={{ borderBottom: '1px solid gray' }}
+      fixed="top"
+    >
       <Navbar.Brand href="#home">
         <img
           src={mainLogo}
@@ -25,6 +29,7 @@ const Navigation = () => {
           width="30"
           height="30"
           className="d-inline-block align-top"
+          alt="Feedit Logo"
         />
         <span>Feedit</span>
       </Navbar.Brand>
