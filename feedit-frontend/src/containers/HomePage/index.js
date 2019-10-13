@@ -30,6 +30,7 @@ const HomePage = () => {
             src={feeditRegistrationURI}
             style={{
               maxHeight: '300px',
+              maxWidth: '-webkit-fill-available',
               border: '1px solid gray',
             }}
           />
