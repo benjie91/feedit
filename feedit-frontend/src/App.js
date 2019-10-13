@@ -1,10 +1,13 @@
 import React from 'react';
-import { HashRouter as Router, Route } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Navigation from './components/Navigation';
 import SideMenu from './components/SideMenu';
+
 import DashboardPage from './containers/DashboardPage';
 import HomePage from './containers/HomePage';
+import RegistrationPage from './containers/RegistrationPage';
+import NotFoundPage from './containers/NotFoundPage';
 
 const App = () => {
   const sideMenuWidth = 220;
@@ -19,12 +22,16 @@ const App = () => {
             position: 'sticky',
             left: `${sideMenuWidth}px`,
             width: `calc(100% - ${sideMenuWidth}px)`,
-            padding: '5px',
+            padding: '15px',
           }}
         >
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/home" component={HomePage} />
-          <Route exact path="/dashboard" component={DashboardPage} />
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/home" component={HomePage} />
+            <Route exact path="/dashboard" component={DashboardPage} />
+            <Route exact path="/register" component={RegistrationPage} />
+            <Route component={NotFoundPage} />
+          </Switch>
         </div>
       </div>
     </Router>
