@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import FeedbackDataGrid from '../../components/FeedbackDataGrid';
 import BarChart from '../../components/BarChart';
+import PageHeader from '../../components/PageHeader';
 
 class DashboardPage extends Component {
   constructor(props) {
@@ -240,6 +241,7 @@ class DashboardPage extends Component {
   render() {
     return (
       <React.Fragment>
+        <PageHeader header="Feedback Dashboard" fontAwesomeIcon="chart-line" />
         <Row>
           <Col md={6}>
             <FeedbackDataGrid feedbackData={this.state.feedbackData} />
