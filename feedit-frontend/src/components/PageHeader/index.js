@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const PageHeader = ({ header, fontAwesomeIcon }) => {
   return (
-    <h3>
+    <h3 style={{ marginBottom: '15px' }}>
       <FontAwesomeIcon icon={fontAwesomeIcon} style={{ marginRight: '10px' }} />
       {header}
     </h3>
