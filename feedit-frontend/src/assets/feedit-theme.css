@@ -10,3 +10,9 @@ h3 {
   font-family: auto, serif;
   font-size: 25px;
 }
+
+h4 {
+  font-family: auto, serif;
+  font-size: 18px;
+  font-weight: bold;
+}
