@@ -239,6 +239,15 @@ class DashboardPage extends Component {
   }
 
   render() {
+    const sysID = this.state.feedbackData
+      .map(feedbackData => feedbackData.sid)
+      .filter((value, index, self) => self.indexOf(value) === index);
+
+    var count = this.state.feedbackData.reduce(
+      (acc, o) => ((acc[o.sid] = (acc[o.sid] || 0) + 1), acc),
+      {},
+    );
+    count = Object.values(count);
     return (
       <React.Fragment>
         <PageHeader header="Feedback Dashboard" fontAwesomeIcon="chart-line" />
@@ -250,6 +259,8 @@ class DashboardPage extends Component {
             <BarChart />
           </Col>
         </Row>
+        <div>{JSON.stringify(sysID)}</div>
+        <div>{JSON.stringify(count)}</div>
       </React.Fragment>
     );
   }

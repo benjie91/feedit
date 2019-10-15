@@ -29,14 +29,14 @@ class BarChart extends Component {
       .attr('x', (datapoint, iteration) => iteration * 45)
       .attr('y', datapoint => canvasHeight - datapoint * scale);
 
-    svgCanvas
-      .selectAll('text')
-      .data(data)
-      .enter()
-      .append('text')
-      .attr('x', (dataPoint, i) => i * 45 + 10)
-      .attr('y', (dataPoint, i) => canvasHeight - dataPoint * scale - 10)
-      .text(dataPoint => dataPoint);
+    // svgCanvas
+    //   .selectAll('text')
+    //   .data(data)
+    //   .enter()
+    //   .append('text')
+    //   .attr('x', (dataPoint, i) => i * 45 + 10)
+    //   .attr('y', (dataPoint, i) => canvasHeight - dataPoint * scale - 10)
+    //   .text(dataPoint => dataPoint);
   }
 
   render() {
