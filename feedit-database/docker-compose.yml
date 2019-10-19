@@ -1,0 +1,12 @@
+version: '3'
+services:
+  feedit-database:
+    image: postgres:12.0
+    container_name: feedit-database
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: feedit
+      POSTGRES_USER: feedit
+      POSTGRES_PASSWORD: password
