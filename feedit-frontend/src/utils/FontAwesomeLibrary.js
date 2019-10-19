@@ -4,6 +4,11 @@ import {
   faHome,
   faChartLine,
   faBars,
+  faCheese,
 } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faCoffee, faHome, faChartLine, faBars);
+// Pages Icon
+library.add(faCoffee, faHome, faChartLine, faCheese);
+
+// Menu Icon
+library.add(faBars);

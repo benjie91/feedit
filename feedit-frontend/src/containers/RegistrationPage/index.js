@@ -36,7 +36,7 @@ const RegistrationPage = () => {
 
   return (
     <React.Fragment>
-      <PageHeader header="System Registration" fontAwesomeIcon="coffee" />
+      <PageHeader header="System Registration" fontAwesomeIcon="cheese" />
       <Card>
         <Card.Body>
           <Form noValidate validated={validated} onSubmit={handleSubmit}>

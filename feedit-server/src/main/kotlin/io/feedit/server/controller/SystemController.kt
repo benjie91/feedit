@@ -3,10 +3,7 @@ package io.feedit.server.controller
 import io.feedit.server.domain.System
 import io.feedit.server.service.SystemService
 import org.slf4j.LoggerFactory
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/system")
@@ -15,10 +12,13 @@ class SystemController(
 ) {
     @PostMapping("/registration")
     fun registerSystem(@RequestBody system: System) {
-
         logger.info("Receive Request to register system: ${system.systemName} (${system.custodianName}) [${system.systemId}]")
-
         systemService.registerSystem(system)
+    }
+
+    @GetMapping("/retrieve/all")
+    fun retreiveAllRegisteredSystems() : MutableIterable<System> {
+        return systemService.retrieveAllSystems()
     }
 
     companion object {

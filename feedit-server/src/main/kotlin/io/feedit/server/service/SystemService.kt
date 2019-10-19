@@ -11,4 +11,8 @@ class SystemService(
     fun registerSystem(system: System) {
         systemRepository.save(system)
     }
+
+    fun retrieveAllSystems(): MutableIterable<System> {
+        return systemRepository.findAll()
+    }
 }

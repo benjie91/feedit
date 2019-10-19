@@ -8,12 +8,14 @@ import DashboardPage from './containers/DashboardPage';
 import HomePage from './containers/HomePage';
 import RegistrationPage from './containers/RegistrationPage';
 import NotFoundPage from './containers/NotFoundPage';
+import SystemPage from './containers/SystemsPage';
 
 const App = () => {
   const sideMenuExpandedWidth = 220;
   const sideMenuMinimizedWidth = 60;
 
   const [sideMenuExpanded, setSideMenuExpanded] = useState(true);
+
   return (
     <Router>
       <Navigation />
@@ -42,6 +44,7 @@ const App = () => {
             <Route exact path="/home" component={HomePage} />
             <Route exact path="/dashboard" component={DashboardPage} />
             <Route exact path="/register" component={RegistrationPage} />
+            <Route exact path="/systems" component={SystemPage} />
             <Route component={NotFoundPage} />
           </Switch>
         </div>

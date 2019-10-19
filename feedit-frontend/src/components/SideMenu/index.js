@@ -33,6 +33,21 @@ const SideMenu = ({
         onClick={() => {
           history.push('register');
         }}
+        fontAwesomeIcon="cheese"
+        minimized={!sideMenuExpanded}
+      />
+      <hr
+        style={{
+          marginBottom: '0px',
+          marginTop: '10px',
+          backgroundColor: 'grey',
+        }}
+      />
+      <MenuItem
+        item="Systems"
+        onClick={() => {
+          history.push('systems');
+        }}
         fontAwesomeIcon="coffee"
         minimized={!sideMenuExpanded}
       />
