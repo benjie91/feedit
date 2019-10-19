@@ -33,6 +33,7 @@ const HomePage = () => {
               maxWidth: '-webkit-fill-available',
               border: '1px solid gray',
             }}
+            alt="Feedit Registration Step"
           />
         </Col>
         <Col xs={6}>
