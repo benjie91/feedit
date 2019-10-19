@@ -52,6 +52,14 @@ const SideMenu = ({
         minimized={!sideMenuExpanded}
       />
       <MenuItem
+        item="Dashboard"
+        onClick={() => {
+          history.push('dashboard');
+        }}
+        fontAwesomeIcon="chart-line"
+        minimized={!sideMenuExpanded}
+      />
+      <MenuItem
         item="Hide Menu"
         onClick={() => {
           const newState = !sideMenuExpanded;

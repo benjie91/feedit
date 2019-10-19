@@ -36,7 +36,7 @@ const MenuItem = ({
   });
 
   return (
-    <div style={minimizedStyle} onClick={onClick}>
+    <div style={minimizedStyle} onClick={onClick} title={item}>
       <FontAwesomeIcon icon={fontAwesomeIcon} />
     </div>
   );

@@ -5,17 +5,6 @@ import { Nav, Navbar } from 'react-bootstrap';
 import mainLogo from '../../assets/images/monster.svg';
 
 const Navigation = () => {
-  useEffect(() => {
-    fetch('/api/feedback/retrieve/test')
-      .then(res => {
-        // console.info(res.text())
-        return res.text();
-      })
-      .then(feedbacks => {
-        console.info(feedbacks);
-      });
-  });
-
   return (
     <Navbar
       className="feedit-bg-lightblue"
