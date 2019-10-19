@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Navigation from './components/Navigation';
@@ -10,18 +10,30 @@ import RegistrationPage from './containers/RegistrationPage';
 import NotFoundPage from './containers/NotFoundPage';
 
 const App = () => {
-  const sideMenuWidth = 220;
+  const sideMenuExpandedWidth = 220;
+  const sideMenuMinimizedWidth = 60;
 
+  const [sideMenuExpanded, setSideMenuExpanded] = useState(true);
   return (
     <Router>
       <Navigation />
       <div id="feedit-body" style={{ top: '56px', position: 'relative' }}>
-        <SideMenu style={{ position: 'fixed', width: `${sideMenuWidth}px` }} />
+        <SideMenu
+          sideMenuExpandedWidth={sideMenuExpandedWidth}
+          sideMenuMinimizedWidth={sideMenuMinimizedWidth}
+          onChange={state => {
+            setSideMenuExpanded(state);
+          }}
+        />
         <div
           style={{
             position: 'sticky',
-            left: `${sideMenuWidth}px`,
-            width: `calc(100% - ${sideMenuWidth}px)`,
+            left: sideMenuExpanded
+              ? `${sideMenuExpandedWidth}px`
+              : `${sideMenuMinimizedWidth}px`,
+            width: `calc(100% - ${
+              sideMenuExpanded ? sideMenuExpandedWidth : sideMenuMinimizedWidth
+            }px)`,
             padding: '15px',
           }}
         >

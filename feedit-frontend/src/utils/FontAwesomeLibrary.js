@@ -3,6 +3,7 @@ import {
   faCoffee,
   faHome,
   faChartLine,
+  faBars,
 } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faCoffee, faHome, faChartLine);
+library.add(faCoffee, faHome, faChartLine, faBars);
