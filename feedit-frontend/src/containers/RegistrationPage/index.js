@@ -19,8 +19,19 @@ const RegistrationPage = () => {
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
+      setValidated(true);
+    } else {
+      fetch('/api/system/registration', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          systemName: registrationFormState.systemName,
+          custodianName: registrationFormState.custodian,
+        }),
+      });
     }
-    setValidated(true);
   };
 
   return (

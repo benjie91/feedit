@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/feedback")
-class FeedbackController (
-    val feedbackRepository: FeedbackRepository
-){
+class FeedbackController(
+    private val feedbackRepository: FeedbackRepository
+) {
 
     @PostMapping("/ingest")
     fun ingestFeedback() {

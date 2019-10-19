@@ -1,6 +1,5 @@
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/feedit
-    username: postgres
+    username: feedit
     password: password
-

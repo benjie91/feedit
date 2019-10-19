@@ -10,6 +10,5 @@ class Feedback(
     val userGroup: String,
     val systemId: Long,
     val feedback: String,
-    @Id @GeneratedValue val id: Long? = null
+    @Id @GeneratedValue val feedbackId: Long? = null
 )
-
