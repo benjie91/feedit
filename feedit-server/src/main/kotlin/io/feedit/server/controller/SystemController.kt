@@ -12,12 +12,13 @@ class SystemController(
 ) {
     @PostMapping("/registration")
     fun registerSystem(@RequestBody system: System) {
-        logger.info("Receive Request to register system: ${system.systemName} (${system.custodianName}) [${system.systemId}]")
+        logger.info("Receive Request to register system: ${system.systemName} (${system.custodianName})")
         systemService.registerSystem(system)
     }
 
     @GetMapping("/retrieve/all")
     fun retreiveAllRegisteredSystems() : MutableIterable<System> {
+        logger.info("Querying all registered systems in Feedit")
         return systemService.retrieveAllSystems()
     }
 
