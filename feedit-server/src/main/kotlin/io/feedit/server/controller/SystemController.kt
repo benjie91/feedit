@@ -3,6 +3,7 @@ package io.feedit.server.controller
 import io.feedit.server.domain.System
 import io.feedit.server.service.SystemService
 import org.slf4j.LoggerFactory
+import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -11,6 +12,7 @@ class SystemController(
     private val systemService: SystemService
 ) {
     @PostMapping("/registration")
+    @ResponseStatus(HttpStatus.CREATED)
     fun registerSystem(@RequestBody system: System) {
         logger.info("Receive Request to register system: ${system.systemName} (${system.custodianName})")
         systemService.registerSystem(system)

@@ -13,6 +13,9 @@ const RegistrationPage = () => {
   );
 
   const [validated, setValidated] = useState(false);
+  const [response, setResponse] = useState({
+    statusCode: undefined,
+  });
 
   const handleSubmit = event => {
     const form = event.currentTarget;
@@ -30,6 +33,18 @@ const RegistrationPage = () => {
           systemName: registrationFormState.systemName,
           custodianName: registrationFormState.custodian,
         }),
+      }).then(res => {
+        if (res.status === 201) {
+          setResponse({
+            statusCode: 201,
+          });
+          setRegistrationFormState({ systemName: '', custodian: '' });
+          setValidated(false);
+        } else {
+          setResponse({
+            statusCode: res.status,
+          });
+        }
       });
     }
   };
@@ -75,6 +90,9 @@ const RegistrationPage = () => {
             <Button variant="primary" type="submit">
               Submit
             </Button>
+            {response.statusCode === 201 && (
+              <div>Submitted Successfully...</div>
+            )}
           </Form>
         </Card.Body>
       </Card>
