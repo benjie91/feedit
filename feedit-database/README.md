@@ -1,5 +1,5 @@
-# Setting up of PostgreSQL using official docker image
-This repository is used for setting up a working postgres using the official postgres docker image file.
+# Setting up of Feedit Database with PostgreSQL using official docker image
+This repository is used for setting up a working feedit database using the official postgres docker image file.
 
 ## Setup
 - [Postgres 12.0](https://hub.docker.com/_/postgres/ "Postgres Official Docker Image")
@@ -20,3 +20,11 @@ This repository is used for setting up a working postgres using the official pos
 - Remove the image
     - `docker image ls --all`
     - `docker image rm 'imageid'`
+
+## Configurations
+Using this docker-compose file, the environment variables for the following are set:
+- POSTGRES_DB: feedit
+- POSTGRES_USER: feedit
+- POSTGRES_PASSWORD: password
+
+This will spawn a postgres instance with feedit as the main database. The default user will be 'feedit' and password will be 'password'.
