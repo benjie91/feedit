@@ -12,7 +12,7 @@ const SystemPage = () => {
   if (isLoading) {
     return <div>Fetching data...</div>;
   } else if (error !== null) {
-    return <div>{error}</div>;
+    return <div>Fetch failed...</div>;
   }
 
   return (

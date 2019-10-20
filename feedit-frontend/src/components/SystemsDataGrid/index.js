@@ -1,36 +1,15 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 
 const SystemsDataGrid = ({ systemsData }) => {
-  const columnDefs = [
-    {
-      headerName: 'System ID',
-      field: 'systemId',
-    },
-    {
-      headerName: 'System Name',
-      field: 'systemName',
-    },
-    {
-      headerName: 'Custodian Name',
-      field: 'custodianName',
-    },
-    {
-      headerName: 'Registered Date',
-      field: 'registeredDateTime',
-    },
-  ];
-
-  const defaultColDef = {
-    suppressSizeToFit: true,
-    resizable: true,
-    sortable: true,
-    filter: true,
-  };
+  const gridApi = useRef();
+  const gridColumnApi = useRef();
 
   const onGridReady = params => {
-    // this.gridApi = params.api;
-    // this.gridColumnApi = params.columnApi;
+    gridApi.current = params.api;
+    gridColumnApi.current = params.columnApi;
+
+    gridApi.current.sizeColumnsToFit();
   };
 
   return (
@@ -42,9 +21,30 @@ const SystemsDataGrid = ({ systemsData }) => {
       }}
     >
       <AgGridReact
-        columnDefs={columnDefs}
+        columnDefs={[
+          {
+            headerName: 'System ID',
+            field: 'systemId',
+          },
+          {
+            headerName: 'System Name',
+            field: 'systemName',
+          },
+          {
+            headerName: 'Custodian Name',
+            field: 'custodianName',
+          },
+          {
+            headerName: 'Registered Date',
+            field: 'registeredDateTime',
+          },
+        ]}
         rowData={systemsData}
-        defaultColDef={defaultColDef}
+        defaultColDef={{
+          resizable: true,
+          sortable: true,
+          filter: true,
+        }}
         onGridReady={onGridReady}
       />
     </div>
