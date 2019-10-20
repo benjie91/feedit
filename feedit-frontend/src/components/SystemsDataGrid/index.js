@@ -16,7 +16,7 @@ const SystemsDataGrid = ({ systemsData }) => {
     <div
       className="ag-theme-balham"
       style={{
-        height: '500px',
+        height: '300px',
         width: '100%',
       }}
     >
