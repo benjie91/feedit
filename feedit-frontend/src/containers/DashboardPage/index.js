@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Container, Row, Col } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import FeedbackDataGrid from '../../components/FeedbackDataGrid';
 import BarChart from '../../components/BarChart';
 import PageHeader from '../../components/PageHeader';
