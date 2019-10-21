@@ -3,6 +3,7 @@ import * as d3 from 'd3';
 import { scaleBand, scaleLinear } from 'd3-scale';
 import data from './data';
 import Axes from './Axes';
+import Bars from './Bars';
 
 export default class BarChart extends Component {
   constructor() {
@@ -13,7 +14,7 @@ export default class BarChart extends Component {
 
   render() {
     const margins = { top: 50, right: 20, bottom: 100, left: 60 };
-    const svgDimensions = { width: 800, height: 500 };
+    const svgDimensions = { width: 600, height: 500 };
 
     const maxValue = Math.max(...data.map(d => d.value));
 
@@ -36,6 +37,13 @@ export default class BarChart extends Component {
         <Axes
           scales={{ xScale, yScale }}
           margins={margins}
+          svgDimensions={svgDimensions}
+        />
+        <Bars
+          scales={{ xScale, yScale }}
+          margins={margins}
+          data={data}
+          maxValue={maxValue}
           svgDimensions={svgDimensions}
         />
       </svg>
