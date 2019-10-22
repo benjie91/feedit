@@ -12,7 +12,7 @@ export default class BarChart extends Component {
   }
 
   render() {
-    const margins = { top: 50, right: 20, bottom: 100, left: 60 };
+    const margins = { top: 0, right: 20, bottom: 30, left: 60 };
     const svgDimensions = { width: 600, height: 500 };
 
     var fData = Array.from(this.props.feedbackData);
@@ -48,7 +48,7 @@ export default class BarChart extends Component {
     // scaleLinear type
     const yScale = this.yScale
       // scaleLinear domain required at least two values, min and max
-      .domain([0, maxValue])
+      .domain([0, maxValue * 1.5])
       .range([svgDimensions.height - margins.bottom, margins.top]);
 
     return (
