@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as d3 from 'd3';
+// import * as d3 from 'd3';
 import { scaleBand, scaleLinear } from 'd3-scale';
 import Axes from './Axes';
 import Bars from './Bars';
