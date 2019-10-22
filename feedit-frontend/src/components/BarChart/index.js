@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 import { scaleBand, scaleLinear } from 'd3-scale';
-import data from './data';
 import Axes from './Axes';
 import Bars from './Bars';
 
@@ -16,14 +15,34 @@ export default class BarChart extends Component {
     const margins = { top: 50, right: 20, bottom: 100, left: 60 };
     const svgDimensions = { width: 600, height: 500 };
 
-    const maxValue = Math.max(...data.map(d => d.value));
+    var fData = Array.from(this.props.feedbackData);
+    var sysID = fData
+      .map(feedbackData => feedbackData.sid)
+      .filter((value, index, self) => self.indexOf(value) === index);
+
+    var count = fData.reduce(
+      (acc, o) => ((acc[o.sid] = (acc[o.sid] || 0) + 1), acc),
+      {},
+    );
+
+    count = Object.values(count);
+
+    let data = [];
+    for (var i = 0; i < sysID.length; i++) {
+      data.push({
+        sysID: sysID[i],
+        count: count[i],
+      });
+    }
+
+    const maxValue = Math.max(...data.map(d => d.count));
 
     // scaleBand type
     const xScale = this.xScale
       .padding(0.5)
       // scaleBand domain should be an array of specific values
       // in our case, we want to use movie titles
-      .domain(data.map(d => d.title))
+      .domain(data.map(d => d.sysID))
       .range([margins.left, svgDimensions.width - margins.right]);
 
     // scaleLinear type
