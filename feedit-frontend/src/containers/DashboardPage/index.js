@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 
 import { Col, Row } from 'react-bootstrap';
 import FeedbackDataGrid from '../../components/FeedbackDataGrid';
-import BarChart from '../../components/BarChart';
 import PageHeader from '../../components/PageHeader';
+
+import Bar from './bar';
 
 class DashboardPage extends Component {
   constructor(props) {
@@ -4655,7 +4656,6 @@ class DashboardPage extends Component {
   }
 
   render() {
-    // var fData = Array.from(this.props.feedbackData);
     var sysID = this.state.feedbackData
       .map(feedbackData => feedbackData.sid)
       .filter((value, index, self) => self.indexOf(value) === index);
@@ -4675,11 +4675,9 @@ class DashboardPage extends Component {
             <FeedbackDataGrid feedbackData={this.state.feedbackData} />
           </Col>
           <Col md={6}>
-            <BarChart feedbackData={this.state.feedbackData} />
+            <Bar sysID={sysID} count={count} />
           </Col>
         </Row>
-        <div>{JSON.stringify(sysID)}</div>
-        <div>{JSON.stringify(count)}</div>
       </React.Fragment>
     );
   }
