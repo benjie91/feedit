@@ -4,7 +4,8 @@ import { Col, Row } from 'react-bootstrap';
 import FeedbackDataGrid from '../../components/FeedbackDataGrid';
 import PageHeader from '../../components/PageHeader';
 
-import Bar from './bar';
+// import Bar from './bar';
+import Bar from '../../components/BarChart';
 
 class DashboardPage extends Component {
   constructor(props) {
