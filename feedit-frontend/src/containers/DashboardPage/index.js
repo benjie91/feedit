@@ -4,8 +4,8 @@ import { Col, Row } from 'react-bootstrap';
 import FeedbackDataGrid from '../../components/FeedbackDataGrid';
 import PageHeader from '../../components/PageHeader';
 
-// import Bar from './bar';
 import Bar from '../../components/BarChart';
+import Line from '../../components/LineChart';
 
 class DashboardPage extends Component {
   constructor(props) {
@@ -4671,6 +4671,17 @@ class DashboardPage extends Component {
     return (
       <React.Fragment>
         <PageHeader header="Feedback Dashboard" fontAwesomeIcon="chart-line" />
+        <Row>
+          <Col md={4}>
+            <Line />
+          </Col>
+          <Col md={4}>
+            <Line />
+          </Col>
+          <Col md={4}>
+            <Line />
+          </Col>
+        </Row>
         <Row>
           <Col md={6}>
             <FeedbackDataGrid feedbackData={this.state.feedbackData} />
