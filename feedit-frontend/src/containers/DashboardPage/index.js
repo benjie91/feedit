@@ -6,6 +6,7 @@ import PageHeader from '../../components/PageHeader';
 
 import Bar from '../../components/BarChart';
 import Line from '../../components/LineChart';
+import Pie from '../../components/PieChart';
 
 class DashboardPage extends Component {
   constructor(props) {
@@ -4657,11 +4658,11 @@ class DashboardPage extends Component {
   }
 
   render() {
-    var sysID = this.state.feedbackData
+    const sysID = this.state.feedbackData
       .map(feedbackData => feedbackData.sid)
       .filter((value, index, self) => self.indexOf(value) === index);
 
-    var count = this.state.feedbackData.reduce(
+    let count = this.state.feedbackData.reduce(
       (acc, o) => ((acc[o.sid] = (acc[o.sid] || 0) + 1), acc),
       {},
     );
@@ -4671,23 +4672,44 @@ class DashboardPage extends Component {
     return (
       <React.Fragment>
         <PageHeader header="Feedback Dashboard" fontAwesomeIcon="chart-line" />
-        <Row>
+        <Row style={{ marginBottom: '10px' }}>
           <Col md={4}>
-            <Line />
+            <Pie />
           </Col>
           <Col md={4}>
             <Line />
           </Col>
           <Col md={4}>
-            <Line />
+            <Bar sysID={sysID} count={count} />
           </Col>
+          {/*style=*/}
+          {/*{{*/}
+          {/*  paddingTop: '50px',*/}
+          {/*  boxSizing: 'content-box',*/}
+          {/*}}*/}
+          {/*containerStyle=*/}
+          {/*{{*/}
+          {/*  position: 'relative',*/}
+          {/*  overflow: 'vosible',*/}
+          {/*}}*/}
         </Row>
         <Row>
-          <Col md={6}>
+          <Col md={10}>
             <FeedbackDataGrid feedbackData={this.state.feedbackData} />
           </Col>
-          <Col md={6}>
-            <Bar sysID={sysID} count={count} />
+          <Col md={2}>
+            <Row>
+              <h3>
+                Feedback:{'\n'}
+                <h1>123</h1>
+              </h3>
+            </Row>
+            <Row>
+              <h3>
+                Systems:{'\n'}
+                <h1>123</h1>
+              </h3>
+            </Row>
           </Col>
         </Row>
       </React.Fragment>

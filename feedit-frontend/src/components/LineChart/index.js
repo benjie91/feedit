@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 
-export default class bar extends Component {
+export default class line extends Component {
   render() {
     // var sysID = Array.from(this.props.sysID);
     // var count = Array.from(this.props.count);
@@ -36,7 +36,7 @@ export default class bar extends Component {
     };
     return (
       <div>
-        <h2>Line Example</h2>
+        <h3>Daily Feedback Received</h3>
         <Line
           data={data}
           options={{

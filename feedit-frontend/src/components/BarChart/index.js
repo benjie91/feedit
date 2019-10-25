@@ -22,11 +22,11 @@ export default class bar extends Component {
     };
     return (
       <div>
-        <h2>Number of messages for each System</h2>
+        <h3>Number of messages for each System</h3>
         <Bar
           data={data}
           width={100}
-          height={60}
+          height={50}
           options={{
             scales: {
               yAxes: [
