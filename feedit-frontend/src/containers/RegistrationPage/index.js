@@ -56,7 +56,7 @@ const RegistrationPage = () => {
   };
 
   return (
-    <div>
+    <React.Fragment>
       <PageHeader header="System Registration" fontAwesomeIcon="cheese" />
       <Card>
         <Card.Body>
@@ -106,7 +106,7 @@ const RegistrationPage = () => {
           setShowNotification(false);
         }}
       />
-    </div>
+    </React.Fragment>
   );
 };
 

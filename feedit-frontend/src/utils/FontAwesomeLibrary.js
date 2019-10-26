@@ -5,10 +5,11 @@ import {
   faChartLine,
   faBars,
   faCheese,
+  faTasks,
 } from '@fortawesome/free-solid-svg-icons';
 
 // Pages Icon
-library.add(faCoffee, faHome, faChartLine, faCheese);
+library.add(faCoffee, faHome, faChartLine, faCheese, faTasks);
 
 // Menu Icon
 library.add(faBars);

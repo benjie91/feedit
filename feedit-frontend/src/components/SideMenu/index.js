@@ -60,6 +60,14 @@ const SideMenu = ({
         minimized={!sideMenuExpanded}
       />
       <MenuItem
+        item="Management"
+        onClick={() => {
+          history.push('management');
+        }}
+        fontAwesomeIcon="tasks"
+        minimized={!sideMenuExpanded}
+      />
+      <MenuItem
         item="Hide Menu"
         onClick={() => {
           const newState = !sideMenuExpanded;
