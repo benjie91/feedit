@@ -6,14 +6,15 @@ import SystemsDataGrid from '../../components/SystemsDataGrid';
 import SystemsOverview from '../../components/SystemsOverview';
 
 import { useJSONFetch } from '../../utils/ReactHooks';
+import LoadingPage from '../LoadingPage';
 
 const SystemPage = () => {
   const { response: data, error, isLoading } = useJSONFetch(
     '/api/system/retrieve/all',
   );
 
-  if (isLoading) {
-    return <div>Fetching data...</div>;
+  if (isLoading || true) {
+    return <LoadingPage />;
   } else if (error !== null) {
     return <div>Fetch failed...</div>;
   }
