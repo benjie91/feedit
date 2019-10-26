@@ -18,6 +18,6 @@ export const useJSONFetch = (url, options) => {
       }
     };
     fetchData();
-  });
+  }, [url, options]);
   return { response, error, isLoading };
 };
