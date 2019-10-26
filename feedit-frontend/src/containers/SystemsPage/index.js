@@ -13,7 +13,7 @@ const SystemPage = () => {
     '/api/system/retrieve/all',
   );
 
-  if (isLoading || true) {
+  if (isLoading) {
     return <LoadingPage />;
   } else if (error !== null) {
     return <div>Fetch failed...</div>;
