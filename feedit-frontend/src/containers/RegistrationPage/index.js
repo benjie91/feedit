@@ -2,6 +2,7 @@ import React, { useState, useReducer } from 'react';
 
 import { Card, Form, Button } from 'react-bootstrap';
 import PageHeader from '../../components/PageHeader';
+import RegistrationNotification from './RegistrationNotification';
 
 const RegistrationPage = () => {
   const [registrationFormState, setRegistrationFormState] = useReducer(
@@ -16,6 +17,7 @@ const RegistrationPage = () => {
   const [response, setResponse] = useState({
     statusCode: undefined,
   });
+  const [showNotification, setShowNotification] = useState(false);
 
   const handleSubmit = event => {
     const form = event.currentTarget;
@@ -33,24 +35,28 @@ const RegistrationPage = () => {
           systemName: registrationFormState.systemName,
           custodianName: registrationFormState.custodian,
         }),
-      }).then(res => {
-        if (res.status === 201) {
-          setResponse({
-            statusCode: 201,
-          });
-          setRegistrationFormState({ systemName: '', custodian: '' });
-          setValidated(false);
-        } else {
-          setResponse({
-            statusCode: res.status,
-          });
-        }
-      });
+      })
+        .then(res => {
+          if (res.status === 201) {
+            setResponse({
+              statusCode: 201,
+            });
+            setRegistrationFormState({ systemName: '', custodian: '' });
+            setValidated(false);
+          } else {
+            setResponse({
+              statusCode: res.status,
+            });
+          }
+        })
+        .finally(() => {
+          setShowNotification(true);
+        });
     }
   };
 
   return (
-    <React.Fragment>
+    <div>
       <PageHeader header="System Registration" fontAwesomeIcon="cheese" />
       <Card>
         <Card.Body>
@@ -90,13 +96,17 @@ const RegistrationPage = () => {
             <Button variant="primary" type="submit">
               Submit
             </Button>
-            {response.statusCode === 201 && (
-              <div>Submitted Successfully...</div>
-            )}
           </Form>
         </Card.Body>
       </Card>
-    </React.Fragment>
+      <RegistrationNotification
+        showNotification={showNotification}
+        success={response.statusCode === 201}
+        onClose={() => {
+          setShowNotification(false);
+        }}
+      />
+    </div>
   );
 };
 
