@@ -1,45 +1,15 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 
-const FeedbackDataGrid = props => {
-  const columnDefs = [
-    {
-      headerName: 'System ID',
-      field: 'sid',
-      width: 110,
-    },
-    {
-      headerName: 'Feedback Target',
-      field: 'fbt',
-      width: 150,
-    },
-    {
-      headerName: 'User ID',
-      field: 'uid',
-      width: 90,
-    },
-    {
-      headerName: 'User Group',
-      field: 'ug',
-      width: 120,
-    },
-    {
-      headerName: 'Time Stamp',
-      field: 'ts',
-      width: 150,
-    },
-    {
-      headerName: 'Feedback',
-      field: 'fb',
-      width: 300,
-    },
-  ];
+const FeedbackDataGrid = ({ feedbackData }) => {
+  const gridApi = useRef(null);
+  const gridColumnApi = useRef(null);
 
-  const defaultColDef = {
-    suppressSizeToFit: true,
-    resizable: true,
-    sortable: true,
-    filter: true,
+  const onGridReady = params => {
+    gridApi.current = params.api;
+    gridColumnApi.current = params.columnApi;
+
+    gridApi.current.sizeColumnsToFit();
   };
 
   return (
@@ -51,9 +21,39 @@ const FeedbackDataGrid = props => {
       }}
     >
       <AgGridReact
-        columnDefs={columnDefs}
-        rowData={props.feedbackData}
-        defaultColDef={defaultColDef}
+        columnDefs={[
+          {
+            headerName: 'System ID',
+            field: 'sid',
+          },
+          {
+            headerName: 'Feedback Target',
+            field: 'fbt',
+          },
+          {
+            headerName: 'User ID',
+            field: 'uid',
+          },
+          {
+            headerName: 'User Group',
+            field: 'ug',
+          },
+          {
+            headerName: 'Time Stamp',
+            field: 'ts',
+          },
+          {
+            headerName: 'Feedback',
+            field: 'fb',
+          },
+        ]}
+        rowData={feedbackData}
+        defaultColDef={{
+          resizable: true,
+          sortable: true,
+          filter: true,
+        }}
+        onGridReady={onGridReady}
       />
     </div>
   );
