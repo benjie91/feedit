@@ -12,6 +12,10 @@ class SystemService(
         systemRepository.save(system)
     }
 
+    fun retrieveSystemDetail(systemId: Long): System? {
+        return systemRepository.findBySystemId(systemId)
+    }
+
     fun retrieveAllSystems(): MutableIterable<System> {
         return systemRepository.findAll()
     }
