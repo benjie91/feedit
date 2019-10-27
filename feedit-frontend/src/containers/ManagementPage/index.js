@@ -18,20 +18,28 @@ const ManagementPage = () => {
     setConsoleMessages(cliMessages);
 
     const res = await fetch('/api/system/retrieve/all');
-    const json = await res.json();
-    const systemIds = json.map(sys => sys.systemId);
-    const systemNames = json.map(sys => sys.systemName);
+    if (res.status !== 200) {
+      setConsoleMessages(
+        cliMessages.concat(
+          'Unable to retrieve registered systems from Feedit. Please try again later.',
+        ),
+      );
+    } else {
+      const json = await res.json();
+      const systemIds = json.map(sys => sys.systemId);
+      const systemNames = json.map(sys => sys.systemName);
 
-    setConsoleMessages(
-      cliMessages
-        .concat(
-          'Generating mock data for ingestion for the following systems...',
-        )
-        .concat(systemNames.join(' , ')),
-    );
+      setConsoleMessages(
+        cliMessages
+          .concat(
+            'Generating mock data for ingestion for the following systems...',
+          )
+          .concat(systemNames.join(' , ')),
+      );
 
-    const mockData = generateMockFeedbacks(systemIds);
-    console.info(mockData);
+      const mockData = generateMockFeedbacks(systemIds);
+      console.info(mockData);
+    }
   };
 
   const clearAllFeedback = () => {
