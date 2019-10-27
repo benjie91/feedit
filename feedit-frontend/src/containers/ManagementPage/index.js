@@ -1,16 +1,37 @@
 import React, { useState } from 'react';
-import PageHeader from '../../components/PageHeader';
 import { Button, Card, Col, Row } from 'react-bootstrap';
+
+import PageHeader from '../../components/PageHeader';
+
+import { generateMockFeedbacks } from '../../utils/MockDataGenerator';
 
 const ManagementPage = () => {
   const [consoleMessages, setConsoleMessages] = useState([
     'Welcome to feedit Management!',
   ]);
 
-  const populateDatabase = () => {
+  const populateDatabase = async () => {
+    let cliMessages = consoleMessages
+      .concat('Populating database with mock data...')
+      .concat('Retrieving current registered system in Feedit...');
+
+    setConsoleMessages(cliMessages);
+
+    const res = await fetch('/api/system/retrieve/all');
+    const json = await res.json();
+    const systemIds = json.map(sys => sys.systemId);
+    const systemNames = json.map(sys => sys.systemName);
+
     setConsoleMessages(
-      consoleMessages.concat('Populating database with mock data...'),
+      cliMessages
+        .concat(
+          'Generating mock data for ingestion for the following systems...',
+        )
+        .concat(systemNames.join(' , ')),
     );
+
+    const mockData = generateMockFeedbacks(systemIds);
+    console.info(mockData);
   };
 
   const clearAllFeedback = () => {
