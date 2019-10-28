@@ -14,12 +14,20 @@ class FeedbackController(
 
     @PostMapping("/ingest")
     fun ingestFeedback(@RequestBody feedback: Feedback) {
+        logger.info("Receive Request to ingest feedback into Feedit")
         feedbackService.ingestFeedback(feedback)
     }
 
     @PostMapping("/ingest/bulk")
     fun ingestBulkFeedback(@RequestBody feedback: List<Feedback>) {
+        logger.info("Receive Request to ingest bulk feedback into Feedit")
         feedbackService.ingestBulkFeedback(feedback)
+    }
+
+    @DeleteMapping("/delete/all")
+    fun deleteAllFeedback() {
+        logger.info("Receive Request to delete all feedback from Feedit")
+        feedbackService.deleteAllFeedback()
     }
 
 //    @GetMapping("/retrieve/{systemName}")

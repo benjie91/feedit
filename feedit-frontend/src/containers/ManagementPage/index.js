@@ -60,10 +60,22 @@ const ManagementPage = () => {
     }
   };
 
-  const clearAllFeedback = () => {
-    setConsoleMessages(
-      consoleMessages.concat('Clearing all feedback in the database...'),
+  const clearAllFeedback = async () => {
+    let cliMessages = consoleMessages.concat(
+      'Clearing all feedback in the database...',
     );
+    setConsoleMessages(cliMessages);
+    const response = await fetch('/api/feedback/delete/all', {
+      method: 'DELETE',
+    });
+    if (response.status !== 200) {
+      cliMessages = cliMessages.concat(
+        'Error deleting all feedback in the database.',
+      );
+    } else {
+      cliMessages = cliMessages.concat('All feedback deleted.');
+    }
+    setConsoleMessages(cliMessages);
   };
 
   return (

@@ -32,6 +32,10 @@ class FeedbackService(
         }
     }
 
+    fun deleteAllFeedback() {
+        feedbackRepository.deleteAll()
+    }
+
     companion object {
         @Suppress("JAVA_CLASS_ON_COMPANION")
         private val logger = LoggerFactory.getLogger(javaClass.enclosingClass)
