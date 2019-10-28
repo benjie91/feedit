@@ -66,8 +66,19 @@ const ManagementPage = () => {
               >
                 Populate Database
               </Button>
-              <Button style={{ width: '100%' }} onClick={clearAllFeedback}>
-                Clear all feedback
+              <Button
+                style={{ width: '100%', marginBottom: '10px' }}
+                onClick={clearAllFeedback}
+              >
+                Clear All Feedback
+              </Button>
+              <Button
+                style={{ width: '100%', marginBottom: '10px' }}
+                onClick={() => {
+                  setConsoleMessages([]);
+                }}
+              >
+                Clear Console
               </Button>
             </Card.Body>
           </Card>
