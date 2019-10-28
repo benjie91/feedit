@@ -29,13 +29,13 @@ const ManagementPage = () => {
       const systemIds = sysJson.map(sys => sys.systemId);
       const systemNames = sysJson.map(sys => sys.systemName);
 
-      setConsoleMessages(
-        cliMessages
-          .concat(
-            'Generating mock data for ingestion for the following systems...',
-          )
-          .concat(systemNames.join(' , ')),
-      );
+      cliMessages = cliMessages
+        .concat(
+          'Generating mock data for ingestion for the following systems...',
+        )
+        .concat(systemNames.join(' , '));
+
+      setConsoleMessages(cliMessages);
 
       const mockData = generateMockFeedbacks(systemIds);
 
@@ -48,16 +48,15 @@ const ManagementPage = () => {
       });
 
       if (ingestResponse.status !== 200) {
-        setConsoleMessages(
-          cliMessages.concat('Error ingesting mock feedback into the database'),
+        cliMessages = cliMessages.concat(
+          'Error ingesting mock feedback into the database',
         );
       } else {
-        setConsoleMessages(
-          cliMessages.concat(
-            'Successfully inserting mock feedback into database',
-          ),
+        cliMessages = cliMessages.concat(
+          'Successfully inserting mock feedback into database',
         );
       }
+      setConsoleMessages(cliMessages);
     }
   };
 
