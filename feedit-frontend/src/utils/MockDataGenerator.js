@@ -1,14 +1,16 @@
-export const times = x => f => {
-  if (x > 0) {
-    f();
-    times(x - 1)(f);
-  }
-};
+import faker from 'faker';
+import { getRandomIntInclusive, times } from './UtilityFunctions';
 
-export const getRandomIntInclusive = (min, max) => {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+const generateFakeUsers = numOfUsers => {
+  let users = [];
+  times(numOfUsers)(() => {
+    users = users.concat({
+      userId: faker.internet.userName(),
+      userDepartment: faker.commerce.department(),
+    });
+  });
+
+  return users;
 };
 
 export const generateMockFeedbacks = systemIds => {
@@ -16,15 +18,18 @@ export const generateMockFeedbacks = systemIds => {
 
   systemIds.forEach(systemId => {
     const numOfFeedbacks = getRandomIntInclusive(1, 300);
+    const users = generateFakeUsers(50);
 
     times(numOfFeedbacks)(() => {
+      const user = users[Math.floor(Math.random() * users.length)];
       mockData = mockData.concat({
         systemId: systemId,
         feedbackType: 'Text',
         feedbackQuestion: 'How is your experience today?',
         feedbackAnswer: 'The Application X seems laggy and unresponsive',
-        userId: '1001',
-        userGroup: 'Department A',
+        userId: user.userId,
+        userGroup: user.userDepartment,
+        timestamp: faker.date.past(1),
       });
     });
   });

@@ -52,7 +52,7 @@ const ManagementPage = () => {
     <React.Fragment>
       <PageHeader header="Feedit Management" fontAwesomeIcon="tasks" />
       <Row>
-        <Col xs={2}>
+        <Col md={2}>
           <Card>
             <Card.Body
               style={{
@@ -83,7 +83,7 @@ const ManagementPage = () => {
             </Card.Body>
           </Card>
         </Col>
-        <Col xs={10}>
+        <Col md={10}>
           <Card>
             <Card.Body
               style={{
