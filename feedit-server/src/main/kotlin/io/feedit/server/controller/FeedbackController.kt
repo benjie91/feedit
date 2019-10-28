@@ -14,9 +14,12 @@ class FeedbackController(
 
     @PostMapping("/ingest")
     fun ingestFeedback(@RequestBody feedback: Feedback) {
-        logger.info(feedback.feedback)
-        logger.info(feedback.timestamp.toString())
         feedbackService.ingestFeedback(feedback)
+    }
+
+    @PostMapping("/ingest/bulk")
+    fun ingestBulkFeedback(@RequestBody feedback: List<Feedback>) {
+        feedbackService.ingestBulkFeedback(feedback)
     }
 
 //    @GetMapping("/retrieve/{systemName}")

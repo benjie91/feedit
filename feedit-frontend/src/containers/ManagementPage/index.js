@@ -17,17 +17,17 @@ const ManagementPage = () => {
 
     setConsoleMessages(cliMessages);
 
-    const res = await fetch('/api/system/retrieve/all');
-    if (res.status !== 200) {
+    const sysResponse = await fetch('/api/system/retrieve/all');
+    if (sysResponse.status !== 200) {
       setConsoleMessages(
         cliMessages.concat(
           'Unable to retrieve registered systems from Feedit. Please try again later.',
         ),
       );
     } else {
-      const json = await res.json();
-      const systemIds = json.map(sys => sys.systemId);
-      const systemNames = json.map(sys => sys.systemName);
+      const sysJson = await sysResponse.json();
+      const systemIds = sysJson.map(sys => sys.systemId);
+      const systemNames = sysJson.map(sys => sys.systemName);
 
       setConsoleMessages(
         cliMessages
@@ -38,7 +38,26 @@ const ManagementPage = () => {
       );
 
       const mockData = generateMockFeedbacks(systemIds);
-      console.info(mockData);
+
+      const ingestResponse = await fetch('/api/feedback/ingest/bulk', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(mockData),
+      });
+
+      if (ingestResponse.status !== 200) {
+        setConsoleMessages(
+          cliMessages.concat('Error ingesting mock feedback into the database'),
+        );
+      } else {
+        setConsoleMessages(
+          cliMessages.concat(
+            'Successfully inserting mock feedback into database',
+          ),
+        );
+      }
     }
   };
 

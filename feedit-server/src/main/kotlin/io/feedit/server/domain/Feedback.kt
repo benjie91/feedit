@@ -11,7 +11,7 @@ class Feedback(
     val systemId: Long,
     val feedbackType: String,
     val feedbackQuestion: String,
-    val feedback: String,
+    val feedbackAnswer: String,
     val userId: String,
     val userGroup: String,
     @CreationTimestamp val timestamp: Timestamp? = null,

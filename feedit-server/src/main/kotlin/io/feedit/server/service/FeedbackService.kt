@@ -21,6 +21,17 @@ class FeedbackService(
         }
     }
 
+    fun ingestBulkFeedback(feedback: List<Feedback>) {
+        feedback.forEach {
+            val system = systemRepository.findBySystemId(it.systemId)
+            if (system !== null)
+                feedbackRepository.save(it)
+            else {
+                throw IllegalArgumentException("System is not registered and thus cannot accept the feedback request")
+            }
+        }
+    }
+
     companion object {
         @Suppress("JAVA_CLASS_ON_COMPANION")
         private val logger = LoggerFactory.getLogger(javaClass.enclosingClass)
