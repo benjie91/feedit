@@ -16,7 +16,7 @@ const FeedbackDataGrid = ({ feedbackData }) => {
     <div
       className="ag-theme-balham"
       style={{
-        height: '500px',
+        height: '550px', // Will try to make it to 100% instead
         width: '100%',
       }}
     >

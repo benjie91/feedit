@@ -22,7 +22,7 @@ export default class bar extends Component {
     };
     return (
       <div>
-        <h3>Number of messages for each System</h3>
+        <h3>Unread</h3>
         <Bar
           data={data}
           width={100}

@@ -36,7 +36,7 @@ export default class line extends Component {
     };
     return (
       <div>
-        <h3>Daily Feedback Received</h3>
+        <h3>Past Week</h3>
         <Line
           data={data}
           options={{

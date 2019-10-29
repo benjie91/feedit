@@ -19,7 +19,7 @@ export default class pie extends Component {
     };
     return (
       <div>
-        <h3>Feedback received (Past 24 hours)</h3>
+        <h3>Past Day</h3>
         <Pie data={data} />
       </div>
     );
