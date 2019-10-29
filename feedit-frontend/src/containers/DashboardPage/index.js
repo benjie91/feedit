@@ -19,17 +19,6 @@ class DashboardPage extends Component {
   }
 
   render() {
-    const sysID = this.state.feedbackData
-      .map(feedbackData => feedbackData.sid)
-      .filter((value, index, self) => self.indexOf(value) === index);
-
-    let count = this.state.feedbackData.reduce(
-      (acc, o) => ((acc[o.sid] = (acc[o.sid] || 0) + 1), acc),
-      {},
-    );
-
-    count = Object.values(count);
-
     return (
       <React.Fragment>
         <PageHeader header="Feedback Dashboard" fontAwesomeIcon="chart-line" />
@@ -41,7 +30,7 @@ class DashboardPage extends Component {
             <Line />
           </Col>
           <Col md={4} style={{ padding: '20px' }}>
-            <Bar sysID={sysID} count={count} />
+            <Bar feedbackData={this.state.feedbackData} />
           </Col>
         </Row>
         <FeedbackDataGrid feedbackData={this.state.feedbackData} />

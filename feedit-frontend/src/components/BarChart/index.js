@@ -3,8 +3,18 @@ import { Bar } from 'react-chartjs-2';
 
 export default class bar extends Component {
   render() {
-    var sysID = Array.from(this.props.sysID);
-    var count = Array.from(this.props.count);
+    //Produce an array of the distinct system IDs
+    const sysID = this.props.feedbackData
+      .map(feedbackData => feedbackData.sid)
+      .filter((value, index, self) => self.indexOf(value) === index);
+
+    //Produce an array of the count for each system ID
+    let count = this.props.feedbackData.reduce(
+      (acc, o) => ((acc[o.sid] = (acc[o.sid] || 0) + 1), acc),
+      {},
+    );
+
+    count = Object.values(count);
 
     var data = {
       labels: sysID,
