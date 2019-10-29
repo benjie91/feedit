@@ -34,9 +34,9 @@ class FeedbackController(
 //    fun retrieveSystemFeedback(@PathVariable systemName: String): String {
 //        return "Test MOCK api call"
 //    }
-//
-//    @GetMapping("/retrieve/all")
-//    fun retrieveAllFeedback(): MutableIterable<Feedback> = feedbackRepository.findAll()
+
+    @GetMapping("/retrieve/all")
+    fun retrieveAllFeedback(): MutableIterable<Feedback> = feedbackService.retrieveAllFeedback()
 
     companion object {
         @Suppress("JAVA_CLASS_ON_COMPANION")

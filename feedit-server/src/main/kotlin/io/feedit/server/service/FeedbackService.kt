@@ -32,6 +32,10 @@ class FeedbackService(
         }
     }
 
+    fun retrieveAllFeedback(): MutableIterable<Feedback> {
+        return feedbackRepository.findAll()
+    }
+
     fun deleteAllFeedback() {
         feedbackRepository.deleteAll()
     }
