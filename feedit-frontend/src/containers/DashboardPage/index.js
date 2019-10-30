@@ -19,12 +19,37 @@ class DashboardPage extends Component {
   }
 
   render() {
+    // let sysID = this.state.feedbackData.filter(
+    //   feedbackData => feedbackData.ts.slice(0, 10) === '08/06/2019',
+    // );
+    // let wholeResult = sysID
+    //   .map(
+    //     feedbackData => feedbackData.ts.substr(11).replace(':', ''),
+    //     // .substr(1, 1),
+    //   )
+    //   .map(Number);
+    //
+    // let count = [0, 0, 0, 0];
+    //
+    // for (let i = 0; i < wholeResult.length; i++) {
+    //   if (wholeResult[i] < 600) {
+    //     count[0]++;
+    //   } else if (wholeResult[i] < 1200) {
+    //     count[1]++;
+    //   } else if (wholeResult[i] < 1800) {
+    //     count[2]++;
+    //   } else {
+    //     count[3]++;
+    //   }
+    // }
+
+    ///////////////////////////////////////////////////////////////////////////////////////
     return (
       <React.Fragment>
         <PageHeader header="Feedback Dashboard" fontAwesomeIcon="chart-line" />
         <Row style={{ marginBottom: '20px' }}>
           <Col md={4} style={{ padding: '20px' }}>
-            <Pie />
+            <Pie feedbackData={this.state.feedbackData} />
           </Col>
           <Col md={4} style={{ padding: '20px' }}>
             <Line />
@@ -33,6 +58,13 @@ class DashboardPage extends Component {
             <Bar feedbackData={this.state.feedbackData} />
           </Col>
         </Row>
+        {/*<div>{JSON.stringify(sysID)}</div>*/}
+        {/*<div>{JSON.stringify(wholeResult)}</div>*/}
+        {/*<div>{JSON.stringify(count)}</div>*/}
+        {/*<div>{JSON.stringify(wholeResult[0])}</div>*/}
+
+        {/*Will be removing the Data Grid for the debugging of the array data,
+           will add back after finishing*/}
         <FeedbackDataGrid feedbackData={this.state.feedbackData} />
       </React.Fragment>
     );
