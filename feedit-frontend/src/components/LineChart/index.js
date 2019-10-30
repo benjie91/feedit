@@ -3,12 +3,20 @@ import { Line } from 'react-chartjs-2';
 
 export default class line extends Component {
   render() {
-    // var sysID = Array.from(this.props.sysID);
-    // var count = Array.from(this.props.count);
+    const sysID = this.props.feedbackData.map(feedbackData =>
+      feedbackData.ts.substr(0, 5),
+    );
+
+    let count = sysID.reduce(
+      (acc, o) => ((acc[o] = (acc[o] || 0) + 1), acc),
+      {},
+    );
+
+    let arr1 = Object.keys(count);
+    let arr2 = Object.values(count);
 
     var data = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-      // labels: sysID,
+      labels: arr1,
       datasets: [
         {
           label: 'My First dataset',
@@ -29,8 +37,7 @@ export default class line extends Component {
           pointHoverBorderWidth: 2,
           pointRadius: 1,
           pointHitRadius: 10,
-          data: [65, 59, 80, 81, 56, 55, 40],
-          // data: count,
+          data: arr2,
         },
       ],
     };
