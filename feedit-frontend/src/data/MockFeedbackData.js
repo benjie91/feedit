@@ -519,4 +519,12 @@ export const feedbackData = [
     ug: 'Department A',
     ts: '02/06/2019 15:22',
   },
+  {
+    sid: 'App02',
+    fb: 'The system is not easy to use.',
+    fbt: 'Generic',
+    uid: 56789,
+    ug: 'Department A',
+    ts: '08/06/2019 03:00',
+  },
 ];

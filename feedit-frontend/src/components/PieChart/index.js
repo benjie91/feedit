@@ -14,13 +14,13 @@ export default class pie extends Component {
 
     for (let i = 0; i < wholeResult.length; i++) {
       if (wholeResult[i] < 600) {
-        count[0]++;
-      } else if (wholeResult[i] < 1200) {
-        count[1]++;
-      } else if (wholeResult[i] < 1800) {
-        count[2]++;
-      } else {
         count[3]++;
+      } else if (wholeResult[i] < 1200) {
+        count[2]++;
+      } else if (wholeResult[i] < 1800) {
+        count[1]++;
+      } else {
+        count[0]++;
       }
     }
 
