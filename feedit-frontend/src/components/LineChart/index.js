@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
+import { Col, Row } from 'react-bootstrap';
 
 export default class line extends Component {
   render() {
+    let lineTitle = this.props.lineTitle;
     const sysID = this.props.feedbackData.map(feedbackData =>
       feedbackData.ts.substr(0, 5),
     );
@@ -19,14 +21,14 @@ export default class line extends Component {
       labels: arr1,
       datasets: [
         {
-          label: 'My First dataset',
+          label: 'Feedback',
           fill: false,
           lineTension: 0.1,
           backgroundColor: 'rgba(75,192,192,0.4)',
           borderColor: 'rgba(75,192,192,1)',
           borderCapStyle: 'butt',
           borderDash: [],
-          borderDashOffset: 0.0,
+          borderDashOffset: 0,
           borderJoinStyle: 'miter',
           pointBorderColor: 'rgba(75,192,192,1)',
           pointBackgroundColor: '#fff',
@@ -43,7 +45,15 @@ export default class line extends Component {
     };
     return (
       <div>
-        <h3>Past Week</h3>
+        <Row>
+          <Col>
+            <h3>{lineTitle}</h3>
+          </Col>
+          <Col>
+            {/*The place to put the week/month button*/}
+            <h3>Hello</h3>
+          </Col>
+        </Row>
         <Line
           data={data}
           options={{

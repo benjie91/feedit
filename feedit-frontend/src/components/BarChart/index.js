@@ -20,7 +20,7 @@ export default class bar extends Component {
       labels: sysID,
       datasets: [
         {
-          label: 'My First dataset',
+          label: 'Feedback',
           backgroundColor: 'rgba(25, 25, 255,0.2)',
           borderColor: 'rgba(25, 25, 255,1)',
           borderWidth: 1,
