@@ -34,5 +34,7 @@ export const generateMockFeedbacks = systemIds => {
     });
   });
 
+  console.info(mockData);
+
   return mockData;
 };
