@@ -25,8 +25,8 @@ export const generateMockFeedbacks = systemIds => {
       mockData = mockData.concat({
         systemId: systemId,
         feedbackType: 'Text',
-        feedbackQuestion: 'How is your experience today?',
-        feedbackAnswer: 'The Application X seems laggy and unresponsive',
+        feedbackQuestion: 'How is your experience today?', // Todo: Change this
+        feedbackAnswer: 'The Application X seems laggy and unresponsive', // Todo: Change this
         userId: user.userId,
         userGroup: user.userDepartment,
         timestamp: faker.date.past(1),
