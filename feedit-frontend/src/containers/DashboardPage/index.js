@@ -11,18 +11,18 @@ import FeedbackDataGrid from '../../components/FeedbackDataGrid';
 import { feeditConfig } from '../../config/FeeditConfiguration';
 import { useJSONFetch } from '../../utils/ReactHooks';
 import LoadingPage from '../LoadingPage';
-
+import { feedbackData } from '../../data/MockFeedbackData';
 // Todo: To remove all hardcoded information and refactor code
 const DashboardPage = () => {
-  const { response: feedbackData, error, isLoading } = useJSONFetch(
-    '/api/feedback/retrieve/all',
-  );
-
-  if (isLoading) {
-    return <LoadingPage />;
-  } else if (error !== null) {
-    return <div>Fetch failed...</div>;
-  }
+  // const { response: feedbackData, error, isLoading } = useJSONFetch(
+  //   //   '/api/feedback/retrieve/all',
+  //   // );
+  //   //
+  //   // if (isLoading) {
+  //   //   return <LoadingPage />;
+  //   // } else if (error !== null) {
+  //   //   return <div>Fetch failed...</div>;
+  //   // }
 
   // let originalData = feedbackData;
   // let lineData = feedbackData;
