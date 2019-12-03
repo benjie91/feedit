@@ -24,27 +24,31 @@ const FeedbackDataGrid = ({ feedbackData }) => {
         columnDefs={[
           {
             headerName: 'System ID',
-            field: 'sid',
+            field: 'systemId',
           },
           {
-            headerName: 'Feedback Target',
-            field: 'fbt',
+            headerName: 'Feedback Type',
+            field: 'feedbackType',
           },
           {
             headerName: 'User ID',
-            field: 'uid',
+            field: 'userId',
           },
           {
             headerName: 'User Group',
-            field: 'ug',
+            field: 'userGroup',
           },
           {
             headerName: 'Time Stamp',
-            field: 'ts',
+            field: 'timestamp',
           },
           {
-            headerName: 'Feedback',
-            field: 'fb',
+            headerName: 'Feedback Question',
+            field: 'feedbackQuestion',
+          },
+          {
+            headerName: 'Feedback Answer',
+            field: 'feedbackAnswer',
           },
         ]}
         rowData={feedbackData}

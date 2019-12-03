@@ -1,3 +1,3 @@
 export const feeditConfig = {
-  useDataFromServer: false,
+  useDataFromServer: true,
 };
