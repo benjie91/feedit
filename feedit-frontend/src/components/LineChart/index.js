@@ -1,24 +1,29 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Col, Row } from 'react-bootstrap';
+import moment from 'moment';
 
 export default class line extends Component {
   render() {
     let lineTitle = this.props.lineTitle;
-    const sysID = this.props.feedbackData.map(feedbackData =>
-      feedbackData.ts.substr(0, 5),
-    );
 
-    let count = sysID.reduce(
-      (acc, o) => ((acc[o] = (acc[o] || 0) + 1), acc),
+    const lineData = this.props.feedbackData.reduce(
+      (accumulator, currentValue) => {
+        const date = moment(currentValue.timestamp).format('MM/YYYY');
+
+        if (accumulator[date] === undefined) accumulator[date] = 0;
+        else accumulator[date] = accumulator[date] + 1;
+
+        return accumulator;
+      },
       {},
     );
 
-    let arr1 = Object.keys(count);
-    let arr2 = Object.values(count);
+    const labels = Object.keys(lineData);
+    const values = Object.values(lineData);
 
-    var data = {
-      labels: arr1,
+    const lineDefinition = {
+      labels,
       datasets: [
         {
           label: 'Feedback',
@@ -39,24 +44,21 @@ export default class line extends Component {
           pointHoverBorderWidth: 2,
           pointRadius: 1,
           pointHitRadius: 10,
-          data: arr2,
+          data: values,
         },
       ],
     };
+
     return (
       <div>
-        <Row>
-          <Col>
-            <h3>{lineTitle}</h3>
-          </Col>
-          <Col>
-            {/*The place to put the week/month button*/}
-            <h3>Hello</h3>
-          </Col>
-        </Row>
+        <h3>{lineTitle}</h3>
         <Line
-          data={data}
+          data={lineDefinition}
           options={{
+            title: {
+              display: false,
+              text: lineTitle,
+            },
             scales: {
               yAxes: [
                 {

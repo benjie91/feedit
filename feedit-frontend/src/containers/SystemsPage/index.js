@@ -11,6 +11,7 @@ import LoadingPage from '../LoadingPage';
 const SystemPage = () => {
   const { response: data, error, isLoading } = useJSONFetch(
     '/api/system/retrieve/all',
+    { method: 'GET' },
   );
 
   if (isLoading) {
