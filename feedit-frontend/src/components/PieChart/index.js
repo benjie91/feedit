@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Pie } from 'react-chartjs-2';
+import { Pie as PieChart } from 'react-chartjs-2';
 import { feedbackData } from '../../data/MockFeedbackData';
 
-export default class pie extends Component {
+export default class Pie extends Component {
   render() {
-    let sysID = this.props.feedbackData.filter(
-      feedbackData => feedbackData.timestamp.slice(0, 10) === '08/06/2019',
-    );
-    let wholeResult = sysID
+    // let sysID = this.props.feedbackData.filter(
+    //   feedbackData => feedbackData.timestamp.slice(0, 10) === '08/06/2019',
+    // );
+    let wholeResult = this.props.feedbackData
       .map(feedbackData => feedbackData.timestamp.substr(11).replace(':', ''))
       .map(Number);
     // let wholeResult = sysID
@@ -43,7 +43,7 @@ export default class pie extends Component {
     return (
       <div>
         <h3>Past Day</h3>
-        <Pie data={data} />
+        <PieChart data={data} />
         {/*<h1>testing</h1>*/}
       </div>
     );

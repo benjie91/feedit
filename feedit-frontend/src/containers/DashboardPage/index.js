@@ -8,30 +8,30 @@ import Line from '../../components/LineChart';
 import Pie from '../../components/PieChart';
 import FeedbackDataGrid from '../../components/FeedbackDataGrid';
 
-// import { feedbackData } from '../../data/MockFeedbackData';
+import { feedbackData } from '../../data/MockFeedbackData';
 import { feeditConfig } from '../../config/FeeditConfiguration';
 import { useJSONFetch } from '../../utils/ReactHooks';
 import LoadingPage from '../LoadingPage';
 
 // Todo: To remove all hardcoded information and refactor code
 const DashboardPage = () => {
-  const { response: feedbackData, error, isLoading } = useJSONFetch(
-    '/api/feedback/retrieve/all',
-  );
-
-  const {
-    response: systemData,
-    error: sysError,
-    isLoading: isLoadingSystems,
-  } = useJSONFetch('/api/system/retrieve/all');
-
-  if (isLoading || isLoadingSystems) {
-    return <LoadingPage />;
-  } else if (error !== null) {
-    return <div>Fetch failed...</div>;
-  }
-
-  const systemName = systemData.map(data => data.systemName);
+  // const { response: feedbackData, error, isLoading } = useJSONFetch(
+  //   '/api/feedback/retrieve/all',
+  // );
+  //
+  // const {
+  //   response: systemData,
+  //   error: sysError,
+  //   isLoading: isLoadingSystems,
+  // } = useJSONFetch('/api/system/retrieve/all');
+  //
+  // if (isLoading || isLoadingSystems) {
+  //   return <LoadingPage />;
+  // } else if (error !== null) {
+  //   return <div>Fetch failed...</div>;
+  // }
+  //
+  // const systemName = systemData.map(data => data.systemName);
 
   // let originalData = feedbackData;
   // let lineData = feedbackData;
@@ -108,14 +108,14 @@ const DashboardPage = () => {
     <React.Fragment>
       <PageHeader header="Feedback Dashboard" fontAwesomeIcon="chart-line" />
       <Row>
-        <Col md={12}>
-          <ButtonGroup aria-label="Basic example">
-            {systemName.map(name => (
-              <Button onClick={() => {}}>{name}</Button>
-            ))}
-            <Button onClick={() => {}}>All</Button>
-          </ButtonGroup>
-        </Col>
+        {/*<Col md={12}>*/}
+        {/*  <ButtonGroup aria-label="Basic example">*/}
+        {/*    {systemName.map(name => (*/}
+        {/*      <Button onClick={() => {}}>{name}</Button>*/}
+        {/*    ))}*/}
+        {/*    <Button onClick={() => {}}>All</Button>*/}
+        {/*  </ButtonGroup>*/}
+        {/*</Col>*/}
         {/*<Col md={4}>*/}
         {/*  <ButtonGroup aria-label="Basic example">*/}
         {/*    <Button onClick={() => lineBtn('Week')}>Week</Button>*/}
@@ -124,9 +124,9 @@ const DashboardPage = () => {
         {/*</Col>*/}
       </Row>
       <Row style={{ marginBottom: '20px' }}>
-        {/*<Col md={4} style={{ padding: '20px' }}>*/}
-        {/*  <Pie feedbackData={feedbackData} />*/}
-        {/*</Col>*/}
+        <Col md={4} style={{ padding: '20px' }}>
+          <Pie feedbackData={feedbackData} />
+        </Col>
         <Col md={4} style={{ padding: '20px' }}>
           <Line
             feedbackData={feedbackData}
