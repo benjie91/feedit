@@ -5,46 +5,27 @@ import { feedbackData } from '../../data/MockFeedbackData';
 
 export default class Pie extends Component {
   render() {
-    /*  This is meant to just check if the timestamp value is on a certain date,
-        will change this to checking if its past 24 hours*/
-    // let sysID = this.props.feedbackData.filter(
-    //   feedbackData => feedbackData.timestamp.slice(0, 10) === '08/06/2019',
-    // );
+    let timestamp = this.props.feedbackData.map(feedbackData =>
+      feedbackData.timestamp.toString(),
+    );
 
-    let wholeResult = this.props.feedbackData
-      .map(feedbackData => {
-        var feedbackDate = Date.parse(feedbackData.timestamp);
-        const now = Date.now();
-        const yesterday = Date.now() - 60 * 60 * 24 * 1000;
-        // const range = moment().range(now, yesterday);
-        // const isin = range.contains(feedbackDate);
-        // console.log(isin);
-        console.log(feedbackDate);
-        if (feedbackDate < yesterday && feedbackDate <= now) {
-          console.log(feedbackData);
-          return feedbackData;
-        } else {
-          return null;
-        }
-      })
-      .map(Number);
-    /* The code at the next 5 lines can be deleted*/
-    // let wholeResult = sysID
-    //   .map(feedbackData => feedbackData.timestamp.substr(11).replace(':', ''))
-    //   .map(Number);
-    //
-    // let testing = this.props.ts;
+    let now = Date.now();
+    let yesterday = Date.now() - 60 * 60 * 24 * 1000;
+    let sixteenHours = Date.now() - 60 * 60 * 16 * 1000;
+    let twelveHours = Date.now() - 60 * 60 * 12 * 1000;
+    let sixHours = Date.now() - 60 * 60 * 6 * 1000;
 
     let count = [0, 0, 0, 0]; //First is 18-24, ..., Last is 0-6
 
-    for (let i = 0; i < wholeResult.length; i++) {
-      if (wholeResult[i] < 600) {
+    for (let i = 0; i < this.props.feedbackData.length; i++) {
+      let feedbackDate = Date.parse(timestamp[i]);
+      if (feedbackDate > sixHours && feedbackDate <= now) {
         count[3]++;
-      } else if (wholeResult[i] < 1200) {
+      } else if (feedbackDate > twelveHours && feedbackDate <= now) {
         count[2]++;
-      } else if (wholeResult[i] < 1800) {
+      } else if (feedbackDate > sixteenHours && feedbackDate <= now) {
         count[1]++;
-      } else if (wholeResult[i] < 2359) {
+      } else if (feedbackDate > yesterday && feedbackDate <= now) {
         count[0]++;
       }
     }
@@ -64,7 +45,6 @@ export default class Pie extends Component {
       <div>
         <h3>Past Day</h3>
         <PieChart data={data} />
-        {/*<h1>testing</h1>*/}
       </div>
     );
   }
