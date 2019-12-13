@@ -2476,14 +2476,25 @@
 import faker from 'faker';
 
 export const feedbackData = [
+  //Will give a date and time that is within 1 day ago
   {
     feedback_id: '123',
     feedback_answer: 'qwerty',
     feedback_question: 'uiop',
     feedback_type: 'text',
     system_id: '1',
-    // timestamp: '08/06/2019 3:00',
-    timestamp: faker.date.recent(), //Will give a date and time that is 1 day ago
+    timestamp: faker.date.recent(),
+    user_group: 'Toys',
+    user_id: 'qwertyuiop',
+  },
+  //Will give a date and time that is within 1 day ago
+  {
+    feedback_id: '123',
+    feedback_answer: 'qwerty',
+    feedback_question: 'uiop',
+    feedback_type: 'text',
+    system_id: '1',
+    timestamp: faker.date.recent(),
     user_group: 'Toys',
     user_id: 'qwertyuiop',
   },
@@ -2493,20 +2504,88 @@ export const feedbackData = [
     feedback_question: 'uiop',
     feedback_type: 'text',
     system_id: '1',
-    // timestamp: '08/06/2019 3:00',
-    timestamp: faker.date.recent(), //Will give a date and time that is 1 day ago
+    timestamp: faker.date.recent(30), //Will give a date and time that is confirm not 24 hours ago
+    // timestamp: faker.date.between('2019-12-03', '2019-12-04'), //Will give a date and time that is confirm not 24 hours ago
     user_group: 'Toys',
     user_id: 'qwertyuiop',
   },
-  {
-    feedback_id: '123',
-    feedback_answer: 'qwerty',
-    feedback_question: 'uiop',
-    feedback_type: 'text',
-    system_id: '1',
-    // timestamp: '08/06/2019 3:00',
-    timestamp: faker.date.between('2019-12-03', '2019-12-04'), //Will give a date and time that is confirm not 24 hours ago
-    user_group: 'Toys',
-    user_id: 'qwertyuiop',
-  },
+  // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // {
+  //   feedback_id: '123',
+  //   feedback_answer: 'qwerty',
+  //   feedback_question: 'uiop',
+  //   feedback_type: 'text',
+  //   system_id: '2',
+  //   // timestamp: '08/06/2019 3:00',
+  //   timestamp: faker.date.recent(), //Will give a date and time that is 1 day ago
+  //   user_group: 'Toys',
+  //   user_id: 'qwertyuiop',
+  // },
+  // {
+  //   feedback_id: '123',
+  //   feedback_answer: 'qwerty',
+  //   feedback_question: 'uiop',
+  //   feedback_type: 'text',
+  //   system_id: '2',
+  //   // timestamp: '08/06/2019 3:00',
+  //   timestamp: faker.date.recent(), //Will give a date and time that is 1 day ago
+  //   user_group: 'Toys',
+  //   user_id: 'qwertyuiop',
+  // },
+  // {
+  //   feedback_id: '123',
+  //   feedback_answer: 'qwerty',
+  //   feedback_question: 'uiop',
+  //   feedback_type: 'text',
+  //   system_id: '2',
+  //   // timestamp: '08/06/2019 3:00',
+  //   timestamp: faker.date.between('2019-12-03', '2019-12-04'), //Will give a date and time that is confirm not 24 hours ago
+  //   user_group: 'Toys',
+  //   user_id: 'qwertyuiop',
+  // },
+  // {
+  //   feedback_id: '123',
+  //   feedback_answer: 'qwerty',
+  //   feedback_question: 'uiop',
+  //   feedback_type: 'text',
+  //   system_id: '2',
+  //   // timestamp: '08/06/2019 3:00',
+  //   timestamp: faker.date.recent(), //Will give a date and time that is 1 day ago
+  //   user_group: 'Toys',
+  //   user_id: 'qwertyuiop',
+  // },
+  // {
+  //   feedback_id: '123',
+  //   feedback_answer: 'qwerty',
+  //   feedback_question: 'uiop',
+  //   feedback_type: 'text',
+  //   system_id: '2',
+  //   // timestamp: '08/06/2019 3:00',
+  //   timestamp: faker.date.recent(), //Will give a date and time that is 1 day ago
+  //   user_group: 'Toys',
+  //   user_id: 'qwertyuiop',
+  // },
+  // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // {
+  //   feedback_id: '123',
+  //   feedback_answer: 'qwerty',
+  //   feedback_question: 'uiop',
+  //   feedback_type: 'text',
+  //   system_id: '3',
+  //   // timestamp: '08/06/2019 3:00',
+  //   timestamp: faker.date.recent(), //Will give a date and time that is 1 day ago
+  //   user_group: 'Toys',
+  //   user_id: 'qwertyuiop',
+  // },
+  // {
+  //   feedback_id: '123',
+  //   feedback_answer: 'qwerty',
+  //   feedback_question: 'uiop',
+  //   feedback_type: 'text',
+  //   system_id: '3',
+  //   // timestamp: '08/06/2019 3:00',
+  //   timestamp: faker.date.between('2019-12-03', '2019-12-04'), //Will give a date and time that is confirm not 24 hours ago
+  //   user_group: 'Toys',
+  //   user_id: 'qwertyuiop',
+  // },
 ];
