@@ -116,22 +116,21 @@ const DashboardPage = () => {
         {/*    <Button onClick={() => {}}>All</Button>*/}
         {/*  </ButtonGroup>*/}
         {/*</Col>*/}
-        {/*<Col md={4}>*/}
-        {/*  <ButtonGroup aria-label="Basic example">*/}
-        {/*    <Button onClick={() => lineBtn('Week')}>Week</Button>*/}
-        {/*    <Button onClick={() => lineBtn('Month')}>Month</Button>*/}
-        {/*  </ButtonGroup>*/}
-        {/*</Col>*/}
+        <Col md={4}>
+          <ButtonGroup aria-label="Basic example">
+            {/*<Button onClick={() => lineBtn('Week')}>Week</Button>*/}
+            {/*<Button onClick={() => lineBtn('Year')}>Month</Button>*/}
+            <Button>Week</Button>
+            <Button>Month</Button>
+          </ButtonGroup>
+        </Col>
       </Row>
       <Row style={{ marginBottom: '20px' }}>
         <Col md={4} style={{ padding: '20px' }}>
           <Pie feedbackData={feedbackData} />
         </Col>
         <Col md={4} style={{ padding: '20px' }}>
-          <Line
-            feedbackData={feedbackData}
-            lineTitle={'Number of Feedback for all systems'}
-          />
+          <Line feedbackData={feedbackData} lineTitle={'Past Feedback'} />
         </Col>
         <Col md={4} style={{ padding: '20px' }}>
           <Bar feedbackData={feedbackData} />
