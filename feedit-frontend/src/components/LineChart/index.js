@@ -12,11 +12,45 @@ export default class line extends Component {
       feedbackData.timestamp.toString(),
     );
 
-    let result = this.props.typeOfData; // This will be the value which the state will return back from DashboardPage
+    let weekOrYear = this.props.weekOrYearState; // This will be the value which the state will return back from DashboardPage
+    let systemId = this.props.systemIdState;
     let labels = [];
     let values = [];
 
-    if (result === 'Week') {
+    // filteredDataId is an array that has all the indexes of data points which is going to be used
+    let filteredDataId = [];
+
+    // sidArray is an array of of all the sid
+    let sidArray = this.props.feedbackData.map(
+      feedbackData => feedbackData.system_id,
+    );
+
+    if (systemId === 'All') {
+      for (let i = 0; i < this.props.feedbackData.length; i++) {
+        filteredDataId.push(i);
+      }
+    } else if (systemId === '1') {
+      for (let i = 0; i < this.props.feedbackData.length; i++) {
+        if (sidArray[i] === '1') {
+          filteredDataId.push(i);
+        }
+      }
+    } else if (systemId === '2') {
+      for (let i = 0; i < this.props.feedbackData.length; i++) {
+        if (sidArray[i] === '2') {
+          filteredDataId.push(i);
+        }
+      }
+    } else if (systemId === '3') {
+      for (let i = 0; i < this.props.feedbackData.length; i++) {
+        if (sidArray[i] === '3') {
+          filteredDataId.push(i);
+        }
+      }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    if (weekOrYear === 'Week') {
       let time = Date.now();
       for (let i = 0; i < 7; i++) {
         time = time - 60 * 60 * 24 * 1000;
@@ -41,9 +75,11 @@ export default class line extends Component {
 
       values = [0, 0, 0, 0, 0, 0, 0];
 
-      for (let i = 0; i < this.props.feedbackData.length; i++) {
+      for (let i = 0; i < filteredDataId.length; i++) {
+        // for (let i = 0; i < this.props.feedbackData.length; i++) {
         //feedbackDate is the number of milliseconds that have passed for the current timestamp in question
-        let feedbackDate = Date.parse(timestamp[i]);
+        //timestamp should access the values that are in filteredDataId
+        let feedbackDate = Date.parse(timestamp[filteredDataId[i]]);
         // Make sure that the date is before the current date and within the current week
         if (
           feedbackDate < new Date().setHours(0, 0, 0, 0) &&
@@ -84,8 +120,8 @@ export default class line extends Component {
 
       values = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // Stores the previous 12 months
 
-      for (let i = 0; i < this.props.feedbackData.length; i++) {
-        let mmyy = moment(timestamp[i]).format('MM/YY');
+      for (let i = 0; i < filteredDataId.length; i++) {
+        let mmyy = moment(timestamp[filteredDataId[i]]).format('MM/YY');
         if (mmyy === labels[11]) {
           values[11]++; //For the whole of 1 month ago
         } else if (mmyy === labels[10]) {
@@ -113,6 +149,7 @@ export default class line extends Component {
         }
       }
     }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     const lineDefinition = {
       labels,

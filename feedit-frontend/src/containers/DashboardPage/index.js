@@ -66,10 +66,11 @@ const DashboardPage = () => {
   // };
 
   const [type, setType] = useState('Week');
+  const [sid, setSid] = useState('All');
 
-  let lineChartTitle = `Past ${type}`;
+  let lineChartTitle = `Past ${type} - ${sid} `;
   useEffect(() => {
-    lineChartTitle = `Past ${type}`;
+    lineChartTitle = `Past ${type} - ${sid} `;
   });
 
   return (
@@ -90,6 +91,14 @@ const DashboardPage = () => {
             <Button onClick={() => setType('Year')}>Year</Button>
           </ButtonGroup>
         </Col>
+        <Col md={4}>
+          <ButtonGroup aria-label="Basic example">
+            <Button onClick={() => setSid('All')}>All</Button>
+            <Button onClick={() => setSid('1')}>1</Button>
+            <Button onClick={() => setSid('2')}>2</Button>
+            <Button onClick={() => setSid('3')}>3</Button>
+          </ButtonGroup>
+        </Col>
       </Row>
       <Row style={{ marginBottom: '20px' }}>
         <Col md={4} style={{ padding: '20px' }}>
@@ -100,7 +109,8 @@ const DashboardPage = () => {
             feedbackData={feedbackData}
             // lineTitle={'Past Feedback'}
             lineTitle={lineChartTitle}
-            typeOfData={type}
+            weekOrYearState={type}
+            systemIdState={sid}
           />
         </Col>
         <Col md={4} style={{ padding: '20px' }}>
