@@ -12,7 +12,7 @@ export default class line extends Component {
       feedbackData.timestamp.toString(),
     );
 
-    let result = 'Week'; // This will be the value which the state will return back from DashboardPage
+    let result = this.props.typeOfData; // This will be the value which the state will return back from DashboardPage
     let labels = [];
     let values = [];
 

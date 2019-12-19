@@ -104,6 +104,8 @@ const DashboardPage = () => {
   //   }
   // };
 
+  const [type, setType] = useState('Week');
+
   return (
     <React.Fragment>
       <PageHeader header="Feedback Dashboard" fontAwesomeIcon="chart-line" />
@@ -118,10 +120,8 @@ const DashboardPage = () => {
         {/*</Col>*/}
         <Col md={4}>
           <ButtonGroup aria-label="Basic example">
-            {/*<Button onClick={() => lineBtn('Week')}>Week</Button>*/}
-            {/*<Button onClick={() => lineBtn('Year')}>Month</Button>*/}
-            <Button>Week</Button>
-            <Button>Month</Button>
+            <Button onClick={() => setType('Week')}>Week</Button>
+            <Button onClick={() => setType('Year')}>Year</Button>
           </ButtonGroup>
         </Col>
       </Row>
@@ -130,7 +130,12 @@ const DashboardPage = () => {
           <Pie feedbackData={feedbackData} />
         </Col>
         <Col md={4} style={{ padding: '20px' }}>
-          <Line feedbackData={feedbackData} lineTitle={'Past Feedback'} />
+          <Line
+            feedbackData={feedbackData}
+            lineTitle={'Past Feedback'}
+            // typeOfData={'Week'}
+            typeOfData={type}
+          />
         </Col>
         <Col md={4} style={{ padding: '20px' }}>
           <Bar feedbackData={feedbackData} />
