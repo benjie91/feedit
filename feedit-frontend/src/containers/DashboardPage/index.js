@@ -64,45 +64,6 @@ const DashboardPage = () => {
   //     lineData = feedbackData;
   //   }
   // };
-  //
-  // const lineBtn = a => {
-  //   if (a === 'Week') {
-  //     let sysID = this.state.data.filter(
-  //       feedbackData => feedbackData.ts.slice(0, 10) === '02/06/2019',
-  //     );
-  //     let sysID2 = this.state.data.filter(
-  //       feedbackData => feedbackData.ts.slice(0, 10) === '03/06/2019',
-  //     );
-  //     let sysID3 = this.state.data.filter(
-  //       feedbackData => feedbackData.ts.slice(0, 10) === '04/06/2019',
-  //     );
-  //     let sysID4 = this.state.data.filter(
-  //       feedbackData => feedbackData.ts.slice(0, 10) === '05/06/2019',
-  //     );
-  //     let sysID5 = this.state.data.filter(
-  //       feedbackData => feedbackData.ts.slice(0, 10) === '06/06/2019',
-  //     );
-  //     let sysID6 = this.state.data.filter(
-  //       feedbackData => feedbackData.ts.slice(0, 10) === '07/06/2019',
-  //     );
-  //     let sysID7 = this.state.data.filter(
-  //       feedbackData => feedbackData.ts.slice(0, 10) === '08/06/2019',
-  //     );
-  //
-  //     sysID.push(...sysID2);
-  //     sysID.push(...sysID3);
-  //     sysID.push(...sysID4);
-  //     sysID.push(...sysID5);
-  //     sysID.push(...sysID6);
-  //     sysID.push(...sysID7);
-  //
-  //     lineData = sysID;
-  //     lineTitle = 'Past Week';
-  //   } else {
-  //     lineData = feedbackData;
-  //     lineTitle = 'Past Month';
-  //   }
-  // };
 
   const [type, setType] = useState('Week');
 
