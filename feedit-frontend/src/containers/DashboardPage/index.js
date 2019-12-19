@@ -106,6 +106,11 @@ const DashboardPage = () => {
 
   const [type, setType] = useState('Week');
 
+  let lineChartTitle = `Past ${type}`;
+  useEffect(() => {
+    lineChartTitle = `Past ${type}`;
+  });
+
   return (
     <React.Fragment>
       <PageHeader header="Feedback Dashboard" fontAwesomeIcon="chart-line" />
@@ -132,8 +137,8 @@ const DashboardPage = () => {
         <Col md={4} style={{ padding: '20px' }}>
           <Line
             feedbackData={feedbackData}
-            lineTitle={'Past Feedback'}
-            // typeOfData={'Week'}
+            // lineTitle={'Past Feedback'}
+            lineTitle={lineChartTitle}
             typeOfData={type}
           />
         </Col>
