@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 
-import { Col, Row, Button, ButtonGroup, Card, Form } from 'react-bootstrap';
+import {
+  Col,
+  Row,
+  Button,
+  ButtonGroup,
+  Card,
+  Form,
+  Accordion,
+} from 'react-bootstrap';
 import Select from 'react-select';
 
 import LoadingPage from '../LoadingPage';
@@ -65,7 +73,7 @@ const DashboardPage = () => {
     feeditConfig.useDataFromServer === false &&
     fetchStatus.status === 'pending'
   ) {
-    const systemIds = generateFakeSystemIds(3);
+    const systemIds = generateFakeSystemIds(feeditConfig.numberOfMockSystem);
     setSystemData(generateFakeSystemData(systemIds));
     const feedbackData = generateMockFeedbacks(systemIds).sort(
       (feedbackA, feedbackB) => {
@@ -107,15 +115,22 @@ const DashboardPage = () => {
   return (
     <React.Fragment>
       <PageHeader header="Feedback Dashboard" fontAwesomeIcon="chart-line" />
-      <Row>
-        <Col md={12}>
-          <Card>
-            <Card.Body>
-              <h3>Filters</h3>
-              <Form>
-                <Form.Row>
-                  <Form.Group as={Col} md="4">
-                    <Form.Label>System</Form.Label>
+      <Accordion
+        defaultActiveKey="0"
+        style={{
+          border: '1px solid #ddd',
+        }}
+      >
+        <Accordion.Toggle as={Card.Header} eventKey="0">
+          <h3 style={{ margin: '0px' }}>Filters</h3>
+        </Accordion.Toggle>
+        <Accordion.Collapse eventKey="0">
+          <Card.Body>
+            <Form>
+              <Form.Row>
+                <Form.Group as={Col} md="4">
+                  <Form.Label>System</Form.Label>
+                  <Form.Text>
                     <Select
                       className="basic-single"
                       classNamePrefix="select"
@@ -127,31 +142,22 @@ const DashboardPage = () => {
                         setSystemId(selectedOption.value);
                       }}
                     />
-                  </Form.Group>
-                </Form.Row>
-              </Form>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-      <Row>
-        {/*<Col md={12}>*/}
-        {/*  <ButtonGroup aria-label="Basic example">*/}
-        {/*    {systemData*/}
-        {/*      .map(data => data.systemName)*/}
-        {/*      .map(name => (*/}
-        {/*        <Button onClick={() => {}}>{name}</Button>*/}
-        {/*      ))}*/}
-        {/*    <Button onClick={() => {}}>All</Button>*/}
-        {/*  </ButtonGroup>*/}
-        {/*</Col>*/}
-        <Col md={4}>
-          <ButtonGroup aria-label="Basic example">
-            <Button onClick={() => setType('Week')}>Week</Button>
-            <Button onClick={() => setType('Year')}>Year</Button>
-          </ButtonGroup>
-        </Col>
-      </Row>
+                  </Form.Text>
+                </Form.Group>
+                <Form.Group as={Col} md="4">
+                  <Form.Label>Date Range</Form.Label>
+                  <Form.Text>
+                    <ButtonGroup aria-label="Basic example">
+                      <Button onClick={() => setType('Week')}>Week</Button>
+                      <Button onClick={() => setType('Year')}>Year</Button>
+                    </ButtonGroup>
+                  </Form.Text>
+                </Form.Group>
+              </Form.Row>
+            </Form>
+          </Card.Body>
+        </Accordion.Collapse>
+      </Accordion>
 
       <Row style={{ marginBottom: '20px' }}>
         <Col md={4} style={{ padding: '20px' }}>
