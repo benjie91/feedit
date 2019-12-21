@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-import { Col, Row, Button, ButtonGroup } from 'react-bootstrap';
+import { Col, Row, Button, ButtonGroup, Card, Form } from 'react-bootstrap';
+import Select from 'react-select';
+
+import LoadingPage from '../LoadingPage';
 
 import PageHeader from '../../components/PageHeader';
 import Bar from '../../components/BarChart';
@@ -8,80 +11,137 @@ import Line from '../../components/LineChart';
 import Pie from '../../components/PieChart';
 import FeedbackDataGrid from '../../components/FeedbackDataGrid';
 
-import { feedbackData } from '../../data/MockFeedbackData';
 import { feeditConfig } from '../../config/FeeditConfiguration';
-import { useJSONFetch } from '../../utils/ReactHooks';
-import LoadingPage from '../LoadingPage';
+import {
+  generateFakeSystemData,
+  generateFakeSystemIds,
+  generateMockFeedbacks,
+} from '../../utils/MockDataGenerator';
 
-// Todo: To remove all hardcoded information and refactor code
 const DashboardPage = () => {
-  // const { response: feedbackData, error, isLoading } = useJSONFetch(
-  //   '/api/feedback/retrieve/all',
-  // );
-  //
-  // const {
-  //   response: systemData,
-  //   error: sysError,
-  //   isLoading: isLoadingSystems,
-  // } = useJSONFetch('/api/system/retrieve/all');
-  //
-  // if (isLoading || isLoadingSystems) {
-  //   return <LoadingPage />;
-  // } else if (error !== null) {
-  //   return <div>Fetch failed...</div>;
-  // }
-  //
-  // const systemName = systemData.map(data => data.systemName);
-
-  // let originalData = feedbackData;
-  // let lineData = feedbackData;
-  // let lineTitle = 'Past Month';
-  //
-  // const sysBtn = a => {
-  //   if (a === 'App01') {
-  //     feedbackData = feedbackData.filter(
-  //       feedbackData => feedbackData.sid === 'App01',
-  //     );
-  //     lineData = feedbackData.filter(
-  //       feedbackData => feedbackData.sid === 'App01',
-  //     );
-  //   } else if (a === 'App02') {
-  //     feedbackData = feedbackData.filter(
-  //       feedbackData => feedbackData.sid === 'App02',
-  //     );
-  //     lineData = feedbackData.filter(
-  //       feedbackData => feedbackData.sid === 'App02',
-  //     );
-  //   } else if (a === 'App03') {
-  //     feedbackData = feedbackData.filter(
-  //       feedbackData => feedbackData.sid === 'App03',
-  //     );
-  //     lineData = feedbackData.filter(
-  //       feedbackData => feedbackData.sid === 'App03',
-  //     );
-  //   } else {
-  //     feedbackData = originalData;
-  //     lineData = feedbackData;
-  //   }
-  // };
-
-  const [type, setType] = useState('Week');
-  const [sid, setSid] = useState('All');
-
-  let lineChartTitle = `Past ${type} - ${sid} `;
-  useEffect(() => {
-    lineChartTitle = `Past ${type} - ${sid} `;
+  // Data and Fetching State
+  const [fetchStatus, setFetchStatus] = useState({
+    status: 'pending',
   });
+  const [feedbackData, setFeedbackData] = useState([]);
+  const [systemData, setSystemData] = useState([]);
+
+  // Filter Conditions State
+  const [type, setType] = useState('Week');
+  const [systemId, setSystemId] = useState('All');
+
+  // Fetching Data
+  if (feeditConfig.useDataFromServer && fetchStatus.status === 'pending') {
+    setFetchStatus({
+      status: 'fetching',
+    });
+    const fetchFeedbackData = fetch('/api/feedback/retrieve/all').then(res =>
+      res.json(),
+    );
+
+    const fetchSystemData = fetch('/api/system/retrieve/all').then(res =>
+      res.json(),
+    );
+
+    Promise.all([fetchFeedbackData, fetchSystemData])
+      .then(([feedbackData, systemData]) => {
+        feedbackData.sort((feedbackA, feedbackB) => {
+          return feedbackA.timestamp - feedbackB.timestamp;
+        });
+
+        setFeedbackData(feedbackData);
+        setSystemData(systemData);
+        setFetchStatus({
+          status: 'completed',
+        });
+      })
+      .catch(error => {
+        setFetchStatus({
+          status: 'error',
+          message: error.message,
+        });
+      });
+  } else if (
+    feeditConfig.useDataFromServer === false &&
+    fetchStatus.status === 'pending'
+  ) {
+    const systemIds = generateFakeSystemIds(3);
+    setSystemData(generateFakeSystemData(systemIds));
+    const feedbackData = generateMockFeedbacks(systemIds).sort(
+      (feedbackA, feedbackB) => {
+        return feedbackA.timestamp - feedbackB.timestamp;
+      },
+    );
+    setFeedbackData(feedbackData);
+    setFetchStatus({
+      status: 'completed',
+    });
+  }
+
+  if (fetchStatus.status === 'fetching') {
+    return <LoadingPage />;
+  } else if (fetchStatus.status === 'error') {
+    return (
+      <div>
+        <p>Fetch failed...</p>
+        <p>{fetchStatus.message}</p>
+      </div>
+    );
+  }
+
+  // Fetch Complete
+  let systemOptions = [
+    {
+      label: 'All Systems',
+      value: 'All',
+    },
+  ];
+
+  systemOptions = systemOptions.concat(
+    systemData.map(data => ({
+      label: data.systemName,
+      value: data.systemId,
+    })),
+  );
 
   return (
     <React.Fragment>
       <PageHeader header="Feedback Dashboard" fontAwesomeIcon="chart-line" />
       <Row>
+        <Col md={12}>
+          <Card>
+            <Card.Body>
+              <h3>Filters</h3>
+              <Form>
+                <Form.Row>
+                  <Form.Group as={Col} md="4">
+                    <Form.Label>System</Form.Label>
+                    <Select
+                      className="basic-single"
+                      classNamePrefix="select"
+                      defaultValue={systemOptions[0]}
+                      isLoading={fetchStatus.status === 'fetching'}
+                      name="color"
+                      options={systemOptions}
+                      onChange={selectedOption => {
+                        setSystemId(selectedOption.value);
+                      }}
+                    />
+                  </Form.Group>
+                </Form.Row>
+              </Form>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+      <Row>
         {/*<Col md={12}>*/}
         {/*  <ButtonGroup aria-label="Basic example">*/}
-        {/*    {systemName.map(name => (*/}
-        {/*      <Button onClick={() => {}}>{name}</Button>*/}
-        {/*    ))}*/}
+        {/*    {systemData*/}
+        {/*      .map(data => data.systemName)*/}
+        {/*      .map(name => (*/}
+        {/*        <Button onClick={() => {}}>{name}</Button>*/}
+        {/*      ))}*/}
         {/*    <Button onClick={() => {}}>All</Button>*/}
         {/*  </ButtonGroup>*/}
         {/*</Col>*/}
@@ -91,15 +151,8 @@ const DashboardPage = () => {
             <Button onClick={() => setType('Year')}>Year</Button>
           </ButtonGroup>
         </Col>
-        <Col md={4}>
-          <ButtonGroup aria-label="Basic example">
-            <Button onClick={() => setSid('All')}>All</Button>
-            <Button onClick={() => setSid('1')}>1</Button>
-            <Button onClick={() => setSid('2')}>2</Button>
-            <Button onClick={() => setSid('3')}>3</Button>
-          </ButtonGroup>
-        </Col>
       </Row>
+
       <Row style={{ marginBottom: '20px' }}>
         <Col md={4} style={{ padding: '20px' }}>
           <Pie feedbackData={feedbackData} />
@@ -107,17 +160,16 @@ const DashboardPage = () => {
         <Col md={4} style={{ padding: '20px' }}>
           <Line
             feedbackData={feedbackData}
-            // lineTitle={'Past Feedback'}
-            lineTitle={lineChartTitle}
+            lineTitle={`Past ${type} - ${systemId} `}
             weekOrYearState={type}
-            systemIdState={sid}
+            systemIdState={systemId}
           />
         </Col>
         <Col md={4} style={{ padding: '20px' }}>
           <Bar feedbackData={feedbackData} />
         </Col>
       </Row>
-      <FeedbackDataGrid feedbackData={feedbackData} />
+      <FeedbackDataGrid feedbackData={feedbackData} systemId={systemId} />
     </React.Fragment>
   );
 };

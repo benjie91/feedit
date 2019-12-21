@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 
-const FeedbackDataGrid = ({ feedbackData }) => {
+const FeedbackDataGrid = ({ feedbackData, systemId }) => {
   const gridApi = useRef(null);
   const gridColumnApi = useRef(null);
 
@@ -11,6 +11,13 @@ const FeedbackDataGrid = ({ feedbackData }) => {
 
     gridApi.current.sizeColumnsToFit();
   };
+
+  const filteredfeedbackData =
+    systemId !== 'All'
+      ? feedbackData.filter(data => {
+          return data.systemId === systemId;
+        })
+      : feedbackData;
 
   return (
     <div
@@ -51,7 +58,7 @@ const FeedbackDataGrid = ({ feedbackData }) => {
             field: 'feedbackAnswer',
           },
         ]}
-        rowData={feedbackData}
+        rowData={filteredfeedbackData}
         defaultColDef={{
           resizable: true,
           sortable: true,
