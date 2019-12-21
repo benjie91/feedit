@@ -187,8 +187,13 @@ const DashboardPage = () => {
         </Col>
         <Col md={4} style={{ padding: '20px' }}>
           <Line
+            systemData={systemData}
             feedbackData={feedbackData}
-            lineTitle={`Past ${type} - ${systemId} `}
+            lineTitle={`Past ${type} - ${
+              systemId !== 'All'
+                ? systemData.find(data => data.systemId === systemId).systemName
+                : 'All Systems'
+            } `}
             weekOrYearState={type}
             systemIdState={systemId}
           />
@@ -198,6 +203,7 @@ const DashboardPage = () => {
         </Col>
       </Row>
       <FeedbackDataGrid
+        systemData={systemData}
         feedbackData={feedbackData}
         systemId={systemId}
         pastDateRange={pastDateRange}
