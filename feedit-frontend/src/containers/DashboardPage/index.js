@@ -159,7 +159,7 @@ const DashboardPage = () => {
                       <Button
                         onClick={() => {
                           setType('Week');
-                          setPastDateRange(7);
+                          setPastDateRange('Week');
                         }}
                       >
                         Week
@@ -167,7 +167,7 @@ const DashboardPage = () => {
                       <Button
                         onClick={() => {
                           setType('Year');
-                          setPastDateRange(365);
+                          setPastDateRange('Year');
                         }}
                       >
                         Year
@@ -189,13 +189,8 @@ const DashboardPage = () => {
           <Line
             systemData={systemData}
             feedbackData={feedbackData}
-            lineTitle={`Past ${type} - ${
-              systemId !== 'All'
-                ? systemData.find(data => data.systemId === systemId).systemName
-                : 'All Systems'
-            } `}
-            weekOrYearState={type}
-            systemIdState={systemId}
+            systemId={systemId}
+            pastDateRange={pastDateRange}
           />
         </Col>
         <Col md={4} style={{ padding: '20px' }}>

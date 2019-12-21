@@ -20,9 +20,13 @@ const FeedbackDataGrid = ({ feedbackData, systemId, pastDateRange }) => {
     );
   }
 
+  let days = 0;
+  if (pastDateRange === 'Week') days = 7;
+  else if (pastDateRange === 'Year') days = 365;
+
   if (pastDateRange !== '') {
     filteredFeedbackData = filteredFeedbackData.filter(data =>
-      moment(data.timestamp).isAfter(moment().subtract(pastDateRange, 'days')),
+      moment(data.timestamp).isAfter(moment().subtract(days, 'days')),
     );
   }
 
