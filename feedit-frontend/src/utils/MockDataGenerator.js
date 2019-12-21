@@ -47,7 +47,7 @@ export const generateMockFeedbacks = systemIds => {
         systemId: systemId,
         feedbackType: 'Text',
         feedbackQuestion: 'How is your experience today?', // Todo: Change this
-        feedbackAnswer: 'The Application X seems laggy and unresponsive', // Todo: Change this
+        feedbackAnswer: faker.lorem.sentences(3, 3),
         userId: user.userId,
         userGroup: user.userDepartment,
         timestamp: faker.date.past(1), // Generate base on one year of data
