@@ -36,6 +36,7 @@ const DashboardPage = () => {
 
   // Filter Conditions State
   const [type, setType] = useState('Week');
+  const [pastDateRange, setPastDateRange] = useState('');
   const [systemId, setSystemId] = useState('All');
 
   // Fetching Data
@@ -145,11 +146,32 @@ const DashboardPage = () => {
                   </Form.Text>
                 </Form.Group>
                 <Form.Group as={Col} md="4">
-                  <Form.Label>Date Range</Form.Label>
+                  <Form.Label>Past Date Range</Form.Label>
                   <Form.Text>
-                    <ButtonGroup aria-label="Basic example">
-                      <Button onClick={() => setType('Week')}>Week</Button>
-                      <Button onClick={() => setType('Year')}>Year</Button>
+                    <ButtonGroup>
+                      <Button
+                        onClick={() => {
+                          setPastDateRange('');
+                        }}
+                      >
+                        Show All
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          setType('Week');
+                          setPastDateRange(7);
+                        }}
+                      >
+                        Week
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          setType('Year');
+                          setPastDateRange(365);
+                        }}
+                      >
+                        Year
+                      </Button>
                     </ButtonGroup>
                   </Form.Text>
                 </Form.Group>
@@ -175,7 +197,11 @@ const DashboardPage = () => {
           <Bar feedbackData={feedbackData} />
         </Col>
       </Row>
-      <FeedbackDataGrid feedbackData={feedbackData} systemId={systemId} />
+      <FeedbackDataGrid
+        feedbackData={feedbackData}
+        systemId={systemId}
+        pastDateRange={pastDateRange}
+      />
     </React.Fragment>
   );
 };
