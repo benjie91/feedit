@@ -35,7 +35,6 @@ const DashboardPage = () => {
   const [systemData, setSystemData] = useState([]);
 
   // Filter Conditions State
-  const [type, setType] = useState('Week');
   const [pastDateRange, setPastDateRange] = useState('');
   const [systemId, setSystemId] = useState('All');
 
@@ -158,7 +157,6 @@ const DashboardPage = () => {
                       </Button>
                       <Button
                         onClick={() => {
-                          setType('Week');
                           setPastDateRange('Week');
                         }}
                       >
@@ -166,7 +164,6 @@ const DashboardPage = () => {
                       </Button>
                       <Button
                         onClick={() => {
-                          setType('Year');
                           setPastDateRange('Year');
                         }}
                       >
