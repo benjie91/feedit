@@ -1,92 +1,205 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-import { Col, Row, Button, ButtonGroup } from 'react-bootstrap';
+import {
+  Col,
+  Row,
+  Button,
+  ButtonGroup,
+  Card,
+  Form,
+  Accordion,
+} from 'react-bootstrap';
+import Select from 'react-select';
+
+import LoadingPage from '../LoadingPage';
 
 import PageHeader from '../../components/PageHeader';
 import Bar from '../../components/BarChart';
 import Line from '../../components/LineChart';
 import Pie from '../../components/PieChart';
 import FeedbackDataGrid from '../../components/FeedbackDataGrid';
-import Dropdown from 'react-bootstrap/Dropdown';
-import { feedbackData } from '../../data/MockFeedbackData';
+
 import { feeditConfig } from '../../config/FeeditConfiguration';
-import { useJSONFetch } from '../../utils/ReactHooks';
-import LoadingPage from '../LoadingPage';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+import {
+  generateFakeSystemData,
+  generateFakeSystemIds,
+  generateMockFeedbacks,
+} from '../../utils/MockDataGenerator';
 
-// Todo: To remove all hardcoded information and refactor code
 const DashboardPage = () => {
-  // const { response: feedbackData, error, isLoading } = useJSONFetch(
-  //   '/api/feedback/retrieve/all',
-  // );
-  //
-  // const {
-  //   response: systemData,
-  //   error: sysError,
-  //   isLoading: isLoadingSystems,
-  // } = useJSONFetch('/api/system/retrieve/all');
-  //
-  // if (isLoading || isLoadingSystems) {
-  //   return <LoadingPage />;
-  // } else if (error !== null) {
-  //   return <div>Fetch failed...</div>;
-  // }
-  //
-  // const systemName = systemData.map(data => data.systemName);
-
-  const [type, setType] = useState('Week');
-  const [sid, setSid] = useState('All');
-
-  let lineChartTitle = `Past ${type} - ${sid} `;
-  useEffect(() => {
-    lineChartTitle = `Past ${type} - ${sid} `;
+  // Data and Fetching State
+  const [fetchStatus, setFetchStatus] = useState({
+    status: 'pending',
   });
+  const [feedbackData, setFeedbackData] = useState([]);
+  const [systemData, setSystemData] = useState([]);
+
+  // Filter Conditions State
+  const [pastDateRange, setPastDateRange] = useState('');
+  const [systemId, setSystemId] = useState('All');
+
+  // Fetching Data
+  if (feeditConfig.useDataFromServer && fetchStatus.status === 'pending') {
+    setFetchStatus({
+      status: 'fetching',
+    });
+    const fetchFeedbackData = fetch('/api/feedback/retrieve/all').then(res =>
+      res.json(),
+    );
+
+    const fetchSystemData = fetch('/api/system/retrieve/all').then(res =>
+      res.json(),
+    );
+
+    Promise.all([fetchFeedbackData, fetchSystemData])
+      .then(([feedbackData, systemData]) => {
+        feedbackData.sort((feedbackA, feedbackB) => {
+          return feedbackA.timestamp - feedbackB.timestamp;
+        });
+
+        setFeedbackData(feedbackData);
+        setSystemData(systemData);
+        setFetchStatus({
+          status: 'completed',
+        });
+      })
+      .catch(error => {
+        setFetchStatus({
+          status: 'error',
+          message: error.message,
+        });
+      });
+  } else if (
+    feeditConfig.useDataFromServer === false &&
+    fetchStatus.status === 'pending'
+  ) {
+    const systemIds = generateFakeSystemIds(feeditConfig.numberOfMockSystem);
+    setSystemData(generateFakeSystemData(systemIds));
+    const feedbackData = generateMockFeedbacks(systemIds).sort(
+      (feedbackA, feedbackB) => {
+        return feedbackA.timestamp - feedbackB.timestamp;
+      },
+    );
+    setFeedbackData(feedbackData);
+    setFetchStatus({
+      status: 'completed',
+    });
+  }
+
+  if (fetchStatus.status === 'fetching') {
+    return <LoadingPage />;
+  } else if (fetchStatus.status === 'error') {
+    return (
+      <div>
+        <p>Fetch failed...</p>
+        <p>{fetchStatus.message}</p>
+      </div>
+    );
+  }
+
+  // Fetch Complete
+  let systemOptions = [
+    {
+      label: 'All Systems',
+      value: 'All',
+    },
+  ];
+
+  systemOptions = systemOptions.concat(
+    systemData.map(data => ({
+      label: data.systemName,
+      value: data.systemId,
+    })),
+  );
 
   return (
     <React.Fragment>
       <PageHeader header="Feedback Dashboard" fontAwesomeIcon="chart-line" />
-      <Row>
-        {/*<Col md={12}>*/}
-        {/*  <ButtonGroup aria-label="Basic example">*/}
-        {/*    {systemName.map(name => (*/}
-        {/*      <Button onClick={() => {}}>{name}</Button>*/}
-        {/*    ))}*/}
-        {/*    <Button onClick={() => {}}>All</Button>*/}
-        {/*  </ButtonGroup>*/}
-        {/*</Col>*/}
-        <Col md={2}>
-          <DropdownButton id="week/year" title="Week / Year">
-            <Dropdown.Item onClick={() => setType('Week')}>Week</Dropdown.Item>
-            <Dropdown.Item onClick={() => setType('Year')}>Year</Dropdown.Item>
-          </DropdownButton>
-        </Col>
-        <Col md={2}>
-          <DropdownButton id="sid" title="System ID">
-            <Dropdown.Item onClick={() => setSid('All')}>All</Dropdown.Item>
-            <Dropdown.Item onClick={() => setSid('1')}>1</Dropdown.Item>
-            <Dropdown.Item onClick={() => setSid('2')}>2</Dropdown.Item>
-            <Dropdown.Item onClick={() => setSid('3')}>3</Dropdown.Item>
-          </DropdownButton>
-        </Col>
-      </Row>
+      <Accordion
+        defaultActiveKey="0"
+        style={{
+          border: '1px solid #ddd',
+        }}
+      >
+        <Accordion.Toggle as={Card.Header} eventKey="0">
+          <h3 style={{ margin: '0px' }}>Filters</h3>
+        </Accordion.Toggle>
+        <Accordion.Collapse eventKey="0">
+          <Card.Body>
+            <Form>
+              <Form.Row>
+                <Form.Group as={Col} md="4">
+                  <Form.Label>System</Form.Label>
+                  <Form.Text>
+                    <Select
+                      className="basic-single"
+                      classNamePrefix="select"
+                      defaultValue={systemOptions[0]}
+                      isLoading={fetchStatus.status === 'fetching'}
+                      name="color"
+                      options={systemOptions}
+                      onChange={selectedOption => {
+                        setSystemId(selectedOption.value);
+                      }}
+                    />
+                  </Form.Text>
+                </Form.Group>
+                <Form.Group as={Col} md="4">
+                  <Form.Label>Past Date Range</Form.Label>
+                  <Form.Text>
+                    <ButtonGroup>
+                      <Button
+                        onClick={() => {
+                          setPastDateRange('');
+                        }}
+                      >
+                        Show All
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          setPastDateRange('Week');
+                        }}
+                      >
+                        Week
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          setPastDateRange('Year');
+                        }}
+                      >
+                        Year
+                      </Button>
+                    </ButtonGroup>
+                  </Form.Text>
+                </Form.Group>
+              </Form.Row>
+            </Form>
+          </Card.Body>
+        </Accordion.Collapse>
+      </Accordion>
+
       <Row style={{ marginBottom: '20px' }}>
         <Col md={4} style={{ padding: '20px' }}>
           <Pie feedbackData={feedbackData} />
         </Col>
         <Col md={4} style={{ padding: '20px' }}>
           <Line
+            systemData={systemData}
             feedbackData={feedbackData}
-            // lineTitle={'Past Feedback'}
-            lineTitle={lineChartTitle}
-            weekOrYearState={type}
-            systemIdState={sid}
+            systemId={systemId}
+            pastDateRange={pastDateRange}
           />
         </Col>
         <Col md={4} style={{ padding: '20px' }}>
           <Bar feedbackData={feedbackData} />
         </Col>
       </Row>
-      <FeedbackDataGrid feedbackData={feedbackData} />
+      <FeedbackDataGrid
+        systemData={systemData}
+        feedbackData={feedbackData}
+        systemId={systemId}
+        pastDateRange={pastDateRange}
+      />
     </React.Fragment>
   );
 };

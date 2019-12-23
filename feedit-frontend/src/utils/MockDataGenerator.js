@@ -13,6 +13,27 @@ const generateFakeUsers = numOfUsers => {
   return users;
 };
 
+export const generateFakeSystemIds = num => {
+  let systemIds = [];
+  for (let i = 0; i < num; i++) {
+    systemIds = systemIds.concat(getRandomIntInclusive(1, 9999));
+  }
+  return systemIds;
+};
+
+export const generateFakeSystemData = systemIds => {
+  let systemData = [];
+  systemIds.forEach(systemId => {
+    systemData = systemData.concat({
+      systemId: systemId,
+      systemName: faker.internet.domainWord(),
+      custodianName: faker.name.findName(),
+      registeredDateTime: '',
+    });
+  });
+  return systemData;
+};
+
 export const generateMockFeedbacks = systemIds => {
   let mockData = [];
 
@@ -26,10 +47,10 @@ export const generateMockFeedbacks = systemIds => {
         systemId: systemId,
         feedbackType: 'Text',
         feedbackQuestion: 'How is your experience today?', // Todo: Change this
-        feedbackAnswer: 'The Application X seems laggy and unresponsive', // Todo: Change this
+        feedbackAnswer: faker.lorem.sentences(3, 3),
         userId: user.userId,
         userGroup: user.userDepartment,
-        timestamp: faker.date.past(1),
+        timestamp: faker.date.past(1), // Generate base on one year of data
       });
     });
   });

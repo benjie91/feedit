@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
 import { AgGridReact } from 'ag-grid-react';
+import moment from 'moment';
 
-const FeedbackDataGrid = ({ feedbackData }) => {
+const FeedbackDataGrid = ({ feedbackData, systemId, pastDateRange }) => {
   const gridApi = useRef(null);
   const gridColumnApi = useRef(null);
 
@@ -11,6 +12,23 @@ const FeedbackDataGrid = ({ feedbackData }) => {
 
     gridApi.current.sizeColumnsToFit();
   };
+
+  let filteredFeedbackData = feedbackData;
+  if (systemId !== 'All') {
+    filteredFeedbackData = filteredFeedbackData.filter(
+      data => data.systemId === systemId,
+    );
+  }
+
+  let days = 0;
+  if (pastDateRange === 'Week') days = 7;
+  else if (pastDateRange === 'Year') days = 365;
+
+  if (pastDateRange !== '') {
+    filteredFeedbackData = filteredFeedbackData.filter(data =>
+      moment(data.timestamp).isAfter(moment().subtract(days, 'days')),
+    );
+  }
 
   return (
     <div
@@ -27,10 +45,6 @@ const FeedbackDataGrid = ({ feedbackData }) => {
             field: 'systemId',
           },
           {
-            headerName: 'Feedback Type',
-            field: 'feedbackType',
-          },
-          {
             headerName: 'User ID',
             field: 'userId',
           },
@@ -43,6 +57,11 @@ const FeedbackDataGrid = ({ feedbackData }) => {
             field: 'timestamp',
           },
           {
+            headerName: 'Feedback Type',
+            field: 'feedbackType',
+            width: 80,
+          },
+          {
             headerName: 'Feedback Question',
             field: 'feedbackQuestion',
           },
@@ -51,7 +70,7 @@ const FeedbackDataGrid = ({ feedbackData }) => {
             field: 'feedbackAnswer',
           },
         ]}
-        rowData={feedbackData}
+        rowData={filteredFeedbackData}
         defaultColDef={{
           resizable: true,
           sortable: true,
