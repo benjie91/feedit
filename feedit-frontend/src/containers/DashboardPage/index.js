@@ -179,10 +179,10 @@ const DashboardPage = () => {
       </Accordion>
 
       <Row style={{ marginBottom: '20px' }}>
-        <Col md={4} style={{ padding: '20px' }}>
-          <Pie feedbackData={feedbackData} />
+        <Col md={5} style={{ padding: '20px' }}>
+          <Bar feedbackData={feedbackData} />
         </Col>
-        <Col md={4} style={{ padding: '20px' }}>
+        <Col md={5} style={{ padding: '20px' }}>
           <Line
             systemData={systemData}
             feedbackData={feedbackData}
@@ -190,8 +190,9 @@ const DashboardPage = () => {
             pastDateRange={pastDateRange}
           />
         </Col>
-        <Col md={4} style={{ padding: '20px' }}>
-          <Bar feedbackData={feedbackData} />
+        <Col md={2} style={{ padding: '20px' }}>
+          <h3>Unread</h3>
+          <h1> {feedbackData.length} </h1>
         </Col>
       </Row>
       <FeedbackDataGrid
