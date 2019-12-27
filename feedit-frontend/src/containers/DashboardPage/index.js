@@ -1,4 +1,10 @@
 import React, { useState } from 'react';
+// import GridLayout, { WidthProvider } from 'react-grid-layout';
+import { Responsive as ResponsiveGridLayout } from 'react-grid-layout';
+import { Responsive, WidthProvider } from 'react-grid-layout';
+
+import './react-grid-layout/css/styles.css';
+import './react-resizable/css/styles.css';
 
 import {
   Col,
@@ -112,6 +118,27 @@ const DashboardPage = () => {
     })),
   );
 
+  // const layout = [
+  //   { i: 'a', x: 0, y: 0, w: 4, h: 8 },
+  //   { i: 'b', x: 4, y: 0, w: 4, h: 8 },
+  //   { i: 'c', x: 8, y: 0, w: 4, h: 8 },
+  // ];
+  const layoutlg = [
+    { i: 'a', x: 0, y: 0, w: 4, h: 2 },
+    { i: 'b', x: 4, y: 0, w: 4, h: 2 },
+    { i: 'c', x: 8, y: 0, w: 4, h: 2 },
+  ];
+
+  const layoutmd = [
+    { i: 'a', x: 0, y: 0, w: 5, h: 2 },
+    { i: 'b', x: 5, y: 0, w: 5, h: 2 },
+    { i: 'c', x: 0, y: 0, w: 5, h: 2 },
+  ];
+
+  const layouts = { lg: layoutlg, md: layoutmd };
+
+  const ResponsiveGridLayout = WidthProvider(Responsive);
+
   return (
     <React.Fragment>
       <PageHeader header="Feedback Dashboard" fontAwesomeIcon="chart-line" />
@@ -178,23 +205,31 @@ const DashboardPage = () => {
         </Accordion.Collapse>
       </Accordion>
 
-      <Row style={{ marginBottom: '20px' }}>
-        <Col md={5} style={{ padding: '20px' }}>
+      <ResponsiveGridLayout
+        className="layout"
+        layouts={layouts}
+        // cols={12}
+        breakpoints={{ lg: 1200, md: 996, sm: 768 }}
+        cols={{ lg: 12, md: 10, sm: 6 }}
+        style={{ marginBottom: '20px' }}
+      >
+        <div key="a">
           <Bar feedbackData={feedbackData} />
-        </Col>
-        <Col md={5} style={{ padding: '20px' }}>
+        </div>
+        <div key="b">
           <Line
             systemData={systemData}
             feedbackData={feedbackData}
             systemId={systemId}
             pastDateRange={pastDateRange}
           />
-        </Col>
-        <Col md={2} style={{ padding: '20px' }}>
+        </div>
+        <div key="c">
           <h3>Unread</h3>
           <h1> {feedbackData.length} </h1>
-        </Col>
-      </Row>
+        </div>
+      </ResponsiveGridLayout>
+
       <FeedbackDataGrid
         systemData={systemData}
         feedbackData={feedbackData}
