@@ -118,11 +118,6 @@ const DashboardPage = () => {
     })),
   );
 
-  // const layout = [
-  //   { i: 'a', x: 0, y: 0, w: 4, h: 8 },
-  //   { i: 'b', x: 4, y: 0, w: 4, h: 8 },
-  //   { i: 'c', x: 8, y: 0, w: 4, h: 8 },
-  // ];
   const layoutlg = [
     { i: 'a', x: 0, y: 0, w: 5, h: 2.5 },
     { i: 'b', x: 5, y: 0, w: 5, h: 2.5 },
@@ -144,6 +139,13 @@ const DashboardPage = () => {
   const layouts = { lg: layoutlg, md: layoutmd, sm: layoutsm };
 
   const ResponsiveGridLayout = WidthProvider(Responsive);
+
+  let unreadColour;
+  if (feedbackData.length < 1000) {
+    unreadColour = 'MediumSeaGreen';
+  } else {
+    unreadColour = 'Tomato';
+  }
 
   return (
     <React.Fragment>
@@ -233,7 +235,10 @@ const DashboardPage = () => {
         </div>
         <div key="c">
           <h3>Unread</h3>
-          <h1> {feedbackData.length} </h1>
+          {/*<h1 style="color:Tomato"> {feedbackData.length} </h1>*/}
+          {/*(feedbackData.length>1000)*/}
+          <h1 style={{ color: unreadColour }}> {feedbackData.length} </h1>
+          {/*<h1 style={{ color: 'Tomato' }}> {feedbackData.length} </h1>*/}
         </div>
       </ResponsiveGridLayout>
 
