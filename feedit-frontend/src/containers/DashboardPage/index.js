@@ -124,18 +124,24 @@ const DashboardPage = () => {
   //   { i: 'c', x: 8, y: 0, w: 4, h: 8 },
   // ];
   const layoutlg = [
-    { i: 'a', x: 0, y: 0, w: 4, h: 2 },
-    { i: 'b', x: 4, y: 0, w: 4, h: 2 },
-    { i: 'c', x: 8, y: 0, w: 4, h: 2 },
+    { i: 'a', x: 0, y: 0, w: 5, h: 2.5 },
+    { i: 'b', x: 5, y: 0, w: 5, h: 2.5 },
+    { i: 'c', x: 10, y: 0, w: 2, h: 2.5 },
   ];
 
   const layoutmd = [
-    { i: 'a', x: 0, y: 0, w: 5, h: 2 },
-    { i: 'b', x: 5, y: 0, w: 5, h: 2 },
-    { i: 'c', x: 0, y: 0, w: 5, h: 2 },
+    { i: 'a', x: 0, y: 0, w: 6, h: 2.5 },
+    { i: 'c', x: 7, y: 0, w: 2, h: 2.5 },
+    { i: 'b', x: 0, y: 0, w: 6, h: 2.5 },
   ];
 
-  const layouts = { lg: layoutlg, md: layoutmd };
+  const layoutsm = [
+    { i: 'a', x: 0, y: 0, w: 5, h: 3 },
+    { i: 'b', x: 0, y: 0, w: 5, h: 3 },
+    { i: 'c', x: 0, y: 0, w: 5, h: 1 },
+  ];
+
+  const layouts = { lg: layoutlg, md: layoutmd, sm: layoutsm };
 
   const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -211,7 +217,8 @@ const DashboardPage = () => {
         // cols={12}
         breakpoints={{ lg: 1200, md: 996, sm: 768 }}
         cols={{ lg: 12, md: 10, sm: 6 }}
-        style={{ marginBottom: '20px' }}
+        // style={{ marginBottom: '20px' }}
+        isResizable={false}
       >
         <div key="a">
           <Bar feedbackData={feedbackData} />
