@@ -126,8 +126,8 @@ const DashboardPage = () => {
 
   const layoutmd = [
     { i: 'a', x: 0, y: 0, w: 6, h: 2.5 },
-    { i: 'c', x: 7, y: 0, w: 2, h: 2.5 },
     { i: 'b', x: 0, y: 0, w: 6, h: 2.5 },
+    { i: 'c', x: 7, y: 0, w: 2, h: 2.5 },
   ];
 
   const layoutsm = [
@@ -224,7 +224,12 @@ const DashboardPage = () => {
       >
         <div key="a">
           {/*<Bar feedbackData={feedbackData} />*/}
-          <Bar feedbackData={feedbackData} systemId={systemId} />
+          <Bar
+            systemData={systemData}
+            feedbackData={feedbackData}
+            systemId={systemId}
+            pastDateRange={pastDateRange}
+          />
         </div>
         <div key="b">
           <Line

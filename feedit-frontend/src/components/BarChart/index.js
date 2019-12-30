@@ -1,7 +1,7 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
 
-const BarChart = ({ feedbackData, systemId }) => {
+const BarChart = ({ systemData, feedbackData, pastDateRange, systemId }) => {
   let filteredFeedbackData = feedbackData;
   if (systemId !== 'All') {
     filteredFeedbackData = filteredFeedbackData.filter(
@@ -50,7 +50,11 @@ const BarChart = ({ feedbackData, systemId }) => {
   };
   return (
     <div>
-      <h3>Past Day</h3>
+      <h3>{`Past Day - ${
+        systemId !== 'All'
+          ? systemData.find(data => data.systemId === systemId).systemName
+          : 'All Systems'
+      }`}</h3>
       <Bar
         data={data}
         width={100}
