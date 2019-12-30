@@ -223,7 +223,8 @@ const DashboardPage = () => {
         isResizable={false}
       >
         <div key="a">
-          <Bar feedbackData={feedbackData} />
+          {/*<Bar feedbackData={feedbackData} />*/}
+          <Bar feedbackData={feedbackData} systemId={systemId} />
         </div>
         <div key="b">
           <Line
