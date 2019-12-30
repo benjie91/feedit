@@ -75,6 +75,9 @@ const BarChart = ({ systemData, feedbackData, pastDateRange, systemId }) => {
               },
             ],
           },
+          legend: {
+            display: false,
+          },
           maintainAspectRatio: true,
         }}
       />

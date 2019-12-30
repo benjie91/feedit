@@ -242,6 +242,9 @@ const LineChart = ({ systemData, feedbackData, pastDateRange, systemId }) => {
               },
             ],
           },
+          legend: {
+            display: false,
+          },
         }}
       />
     </div>
