@@ -28,6 +28,7 @@ import {
   generateFakeSystemIds,
   generateMockFeedbacks,
 } from '../../utils/MockDataGenerator';
+import Spacer from 'react-spacer';
 
 const DashboardPage = () => {
   // Data and Fetching State
@@ -117,20 +118,17 @@ const DashboardPage = () => {
 
   const layoutlg = [
     { i: 'a', x: 0, y: 0, w: 5, h: 2.5 },
-    { i: 'b', x: 5, y: 0, w: 5, h: 2.5 },
-    { i: 'c', x: 10, y: 0, w: 2, h: 2.5 },
+    { i: 'b', x: 6, y: 0, w: 5, h: 2.5 },
   ];
 
   const layoutmd = [
-    { i: 'a', x: 0, y: 0, w: 6, h: 2.5 },
-    { i: 'b', x: 0, y: 0, w: 6, h: 2.5 },
-    { i: 'c', x: 7, y: 0, w: 2, h: 2.5 },
+    { i: 'a', x: 0, y: 0, w: 5, h: 2.5 },
+    { i: 'b', x: 5, y: 0, w: 5, h: 2.5 },
   ];
 
   const layoutsm = [
     { i: 'a', x: 0, y: 0, w: 5, h: 3 },
     { i: 'b', x: 0, y: 0, w: 5, h: 3 },
-    { i: 'c', x: 0, y: 0, w: 5, h: 1 },
   ];
 
   const layouts = { lg: layoutlg, md: layoutmd, sm: layoutsm };
@@ -146,7 +144,13 @@ const DashboardPage = () => {
 
   return (
     <React.Fragment>
-      <PageHeader header="Feedback Dashboard" fontAwesomeIcon="chart-line" />
+      <div style={{ display: 'flex' }}>
+        <PageHeader header="Feedback Dashboard" fontAwesomeIcon="chart-line" />
+        <Spacer grow="1" />
+        <h3>Unread:</h3>
+        <Spacer width="12px" />
+        <h3 style={{ color: unreadColour }}> {feedbackData.length} </h3>
+      </div>
       <Accordion
         defaultActiveKey="0"
         style={{
@@ -231,10 +235,6 @@ const DashboardPage = () => {
             systemId={systemId}
             pastDateRange={pastDateRange}
           />
-        </div>
-        <div key="c">
-          <h3>Unread</h3>
-          <h1 style={{ color: unreadColour }}> {feedbackData.length} </h1>
         </div>
       </ResponsiveGridLayout>
 
