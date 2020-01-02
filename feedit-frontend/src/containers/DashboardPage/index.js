@@ -117,15 +117,15 @@ const DashboardPage = () => {
   );
 
   const layoutlg = [
-    { i: 'a', x: 0, y: 0, w: 5, h: 2.5 },
-    { i: 'b', x: 6, y: 0, w: 5, h: 2.5 },
-    { i: 'c', x: 0, y: 2.5, w: 12, h: 4 },
+    { i: 'a', x: 0, y: 0, w: 5, h: 3 },
+    { i: 'b', x: 6, y: 0, w: 5, h: 3 },
+    { i: 'c', x: 0, y: 3, w: 12, h: 4 },
   ];
 
   const layoutmd = [
-    { i: 'a', x: 0, y: 0, w: 5, h: 2.5 },
-    { i: 'b', x: 5, y: 0, w: 5, h: 2.5 },
-    { i: 'c', x: 0, y: 2.5, w: 10, h: 4 },
+    { i: 'a', x: 0, y: 0, w: 5, h: 3 },
+    { i: 'b', x: 5, y: 0, w: 5, h: 3 },
+    { i: 'c', x: 0, y: 3, w: 10, h: 4 },
   ];
 
   const layoutsm = [
