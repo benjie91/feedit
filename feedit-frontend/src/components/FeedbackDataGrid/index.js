@@ -41,6 +41,10 @@ const FeedbackDataGrid = ({ feedbackData, systemId, pastDateRange }) => {
       <AgGridReact
         columnDefs={[
           {
+            headerName: 'Unread',
+            field: 'unread',
+          },
+          {
             headerName: 'System ID',
             field: 'systemId',
           },

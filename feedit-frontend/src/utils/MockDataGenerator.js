@@ -51,6 +51,7 @@ export const generateMockFeedbacks = systemIds => {
         userId: user.userId,
         userGroup: user.userDepartment,
         timestamp: faker.date.past(1), // Generate base on one year of data
+        unread: Math.random() >= 0.5, // Return true when >=0.5
       });
     });
   });

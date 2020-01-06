@@ -112,6 +112,11 @@ const DashboardPage = () => {
     })),
   );
 
+  let a = 0;
+  for (let x = 0; x < feedbackData.length; x++) {
+    if (feedbackData[x].unread) a++;
+  }
+
   let unreadColour;
   if (feedbackData.length < 1000) {
     unreadColour = 'MediumSeaGreen';
@@ -128,7 +133,7 @@ const DashboardPage = () => {
         <Spacer grow="1" />
         <h3>Unread:</h3>
         <Spacer width="12px" />
-        <h3 style={{ color: unreadColour }}> {feedbackData.length} </h3>
+        <h3 style={{ color: unreadColour }}> {a} </h3>
       </div>
       <Accordion
         defaultActiveKey="0"
