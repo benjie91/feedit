@@ -23,6 +23,7 @@ import {
 } from '../../utils/MockDataGenerator';
 import Spacer from 'react-spacer';
 import ResponsiveLocalStorageLayout from '../ResponsiveLocalStorageLayout';
+import BootstrapSwitchButton from 'bootstrap-switch-button-react/lib/bootstrap-switch-button-react';
 
 const DashboardPage = () => {
   // Data and Fetching State
@@ -128,12 +129,20 @@ const DashboardPage = () => {
     <React.Fragment>
       <div style={{ display: 'flex' }}>
         <PageHeader header="Feedback Dashboard" fontAwesomeIcon="chart-line" />
-        <Spacer grow="11" />
-        <Button onClick={() => setDynamic(dynamic + 1)}>Dynamic</Button>
-        <Spacer grow="1" />
+        {/*<Spacer grow="11" />*/}
+        {/*<Button onClick={() => setDynamic(dynamic + 1)}>Dynamic</Button>*/}
+        <Spacer grow="12" />
         <h3>Unread:</h3>
         <Spacer width="12px" />
         <h3 style={{ color: unreadColour }}> {a} </h3>
+        <Spacer grow="1" />
+        <BootstrapSwitchButton
+          checked={true}
+          height={15}
+          onlabel="On"
+          offlabel="Off"
+          onChange={() => setDynamic(dynamic + 1)}
+        />
       </div>
       <Accordion
         defaultActiveKey="0"
