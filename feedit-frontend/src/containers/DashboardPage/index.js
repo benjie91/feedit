@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-// import GridLayout, { WidthProvider } from 'react-grid-layout';
-import { Responsive as ResponsiveGridLayout } from 'react-grid-layout';
-import { Responsive, WidthProvider } from 'react-grid-layout';
 
 import {
   Col,
@@ -17,10 +14,6 @@ import Select from 'react-select';
 import LoadingPage from '../LoadingPage';
 
 import PageHeader from '../../components/PageHeader';
-import Bar from '../../components/BarChart';
-import Line from '../../components/LineChart';
-import Pie from '../../components/PieChart';
-import FeedbackDataGrid from '../../components/FeedbackDataGrid';
 
 import { feeditConfig } from '../../config/FeeditConfiguration';
 import {
@@ -29,6 +22,7 @@ import {
   generateMockFeedbacks,
 } from '../../utils/MockDataGenerator';
 import Spacer from 'react-spacer';
+import ResponsiveLocalStorageLayout from '../ResponsiveLocalStorageLayout';
 
 const DashboardPage = () => {
   // Data and Fetching State
@@ -37,6 +31,8 @@ const DashboardPage = () => {
   });
   const [feedbackData, setFeedbackData] = useState([]);
   const [systemData, setSystemData] = useState([]);
+
+  const [dynamic, setDynamic] = useState(1);
 
   // Filter Conditions State
   const [pastDateRange, setPastDateRange] = useState('');
@@ -116,28 +112,6 @@ const DashboardPage = () => {
     })),
   );
 
-  const layoutlg = [
-    { i: 'a', x: 0, y: 0, w: 5, h: 3 },
-    { i: 'b', x: 6, y: 0, w: 5, h: 3 },
-    { i: 'c', x: 0, y: 3, w: 12, h: 4 },
-  ];
-
-  const layoutmd = [
-    { i: 'a', x: 0, y: 0, w: 5, h: 3 },
-    { i: 'b', x: 5, y: 0, w: 5, h: 3 },
-    { i: 'c', x: 0, y: 3, w: 10, h: 4 },
-  ];
-
-  const layoutsm = [
-    { i: 'a', x: 0, y: 0, w: 5, h: 3 },
-    { i: 'b', x: 0, y: 0, w: 5, h: 3 },
-    { i: 'c', x: 0, y: 0, w: 6, h: 4 },
-  ];
-
-  const layouts = { lg: layoutlg, md: layoutmd, sm: layoutsm };
-
-  const ResponsiveGridLayout = WidthProvider(Responsive);
-
   let unreadColour;
   if (feedbackData.length < 1000) {
     unreadColour = 'MediumSeaGreen';
@@ -149,6 +123,8 @@ const DashboardPage = () => {
     <React.Fragment>
       <div style={{ display: 'flex' }}>
         <PageHeader header="Feedback Dashboard" fontAwesomeIcon="chart-line" />
+        <Spacer grow="11" />
+        <Button onClick={() => setDynamic(dynamic + 1)}>Dynamic</Button>
         <Spacer grow="1" />
         <h3>Unread:</h3>
         <Spacer width="12px" />
@@ -216,38 +192,13 @@ const DashboardPage = () => {
           </Card.Body>
         </Accordion.Collapse>
       </Accordion>
-
-      <ResponsiveGridLayout
-        className="layout"
-        layouts={layouts}
-        breakpoints={{ lg: 1200, md: 996, sm: 768 }}
-        cols={{ lg: 12, md: 10, sm: 6 }}
-      >
-        <div key="a">
-          <Bar
-            systemData={systemData}
-            feedbackData={feedbackData}
-            systemId={systemId}
-            pastDateRange={pastDateRange}
-          />
-        </div>
-        <div key="b">
-          <Line
-            systemData={systemData}
-            feedbackData={feedbackData}
-            systemId={systemId}
-            pastDateRange={pastDateRange}
-          />
-        </div>
-        <div key="c">
-          <FeedbackDataGrid
-            systemData={systemData}
-            feedbackData={feedbackData}
-            systemId={systemId}
-            pastDateRange={pastDateRange}
-          />
-        </div>
-      </ResponsiveGridLayout>
+      <ResponsiveLocalStorageLayout
+        systemData={systemData}
+        feedbackData={feedbackData}
+        systemId={systemId}
+        pastDateRange={pastDateRange}
+        dynamic={dynamic}
+      />
     </React.Fragment>
   );
 };
