@@ -16,7 +16,8 @@ const generateFakeUsers = numOfUsers => {
 export const generateFakeSystemIds = num => {
   let systemIds = [];
   for (let i = 0; i < num; i++) {
-    systemIds = systemIds.concat(getRandomIntInclusive(1, 9999));
+    // systemIds = systemIds.concat(getRandomIntInclusive(1, 9999));
+    systemIds = systemIds.concat(123 * i);
   }
   return systemIds;
 };
