@@ -46,7 +46,12 @@ export default class ResponsiveLocalStorageLayout extends React.PureComponent {
 
     return (
       <div>
-        <Button onClick={() => this.resetLayout()}>Reset Layout</Button>
+        <Button
+          onClick={() => this.resetLayout()}
+          style={{ marginTop: '20px' }}
+        >
+          Reset Layout
+        </Button>
         <ResponsiveReactGridLayout
           className="layout"
           cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
