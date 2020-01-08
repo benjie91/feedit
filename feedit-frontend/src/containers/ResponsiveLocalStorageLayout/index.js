@@ -5,6 +5,7 @@ import Bar from '../../components/BarChart';
 import Line from '../../components/LineChart';
 import FeedbackDataGrid from '../../components/FeedbackDataGrid';
 import { Button } from 'react-bootstrap';
+import Spacer from 'react-spacer';
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 const originalLayouts = getFromLS('layouts') || {};
 
@@ -46,12 +47,15 @@ export default class ResponsiveLocalStorageLayout extends React.PureComponent {
 
     return (
       <div>
-        <Button
-          onClick={() => this.resetLayout()}
-          style={{ marginTop: '20px' }}
-        >
-          Reset Layout
-        </Button>
+        <div style={{ display: 'flex' }}>
+          <Spacer grow="1" />
+          <Button
+            onClick={() => this.resetLayout()}
+            style={{ marginTop: '20px' }}
+          >
+            Reset Layout
+          </Button>
+        </div>
         <ResponsiveReactGridLayout
           className="layout"
           cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
