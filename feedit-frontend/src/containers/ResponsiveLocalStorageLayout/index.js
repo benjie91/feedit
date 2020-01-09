@@ -58,6 +58,7 @@ export default class ResponsiveLocalStorageLayout extends React.PureComponent {
         </div>
         <ResponsiveReactGridLayout
           className="layout"
+          breakpoints={{ lg: 1200, md: 796, sm: 768 }}
           cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
           // rowHeight={30}
           layouts={this.state.layouts}
@@ -69,7 +70,7 @@ export default class ResponsiveLocalStorageLayout extends React.PureComponent {
         >
           <div
             key="1"
-            data-grid={{ w: 5, h: 3, x: 0, y: 0 }}
+            data-grid={{ w: 5, h: 2, x: 0, y: 0 }}
             style={{ padding: '20px' }}
           >
             <Bar
@@ -81,7 +82,7 @@ export default class ResponsiveLocalStorageLayout extends React.PureComponent {
           </div>
           <div
             key="2"
-            data-grid={{ w: 5, h: 3, x: 6, y: 0 }}
+            data-grid={{ w: 5, h: 2, x: 6, y: 0 }}
             style={{ padding: '20px' }}
           >
             <Line

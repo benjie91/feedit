@@ -156,7 +156,10 @@ const DashboardPage = () => {
             height={15}
             onlabel="On"
             offlabel="Off"
-            onChange={() => setDynamic(dynamic + 1)}
+            onChange={() => {
+              setDynamic(dynamic + 1);
+              // ResponsiveLocalStorageLayout(resetLayout())
+            }}
           />
         </div>
         <Accordion
