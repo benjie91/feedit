@@ -33,7 +33,7 @@ const DashboardPage = () => {
   const [feedbackData, setFeedbackData] = useState([]);
   const [systemData, setSystemData] = useState([]);
 
-  const [dynamic, setDynamic] = useState(1);
+  const [dynamic, setDynamic] = useState(true);
 
   // Filter Conditions State
   const [pastDateRange, setPastDateRange] = useState('');
@@ -149,7 +149,7 @@ const DashboardPage = () => {
           <Spacer width="12px" />
           <h3 style={{ color: unreadColour }}> {a} </h3>
           <Spacer width="12px" />
-          <h3>Static:</h3>
+          <h3>Dynamic:</h3>
           <Spacer width="12px" />
           <BootstrapSwitchButton
             checked={true}
@@ -157,7 +157,7 @@ const DashboardPage = () => {
             onlabel="On"
             offlabel="Off"
             onChange={() => {
-              setDynamic(dynamic + 1);
+              setDynamic(!dynamic);
               // ResponsiveLocalStorageLayout(resetLayout())
             }}
           />

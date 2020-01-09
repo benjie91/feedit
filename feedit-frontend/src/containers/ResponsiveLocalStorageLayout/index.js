@@ -65,8 +65,8 @@ export default class ResponsiveLocalStorageLayout extends React.PureComponent {
           onLayoutChange={(layout, layouts) =>
             this.onLayoutChange(layout, layouts)
           }
-          isResizable={dynamic % 2}
-          isDraggable={dynamic % 2}
+          isResizable={dynamic}
+          isDraggable={dynamic}
         >
           <div
             key="1"
