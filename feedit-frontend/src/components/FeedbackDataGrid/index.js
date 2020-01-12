@@ -2,7 +2,12 @@ import React, { useRef } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import moment from 'moment';
 
-const FeedbackDataGrid = ({ feedbackData, systemId, pastDateRange }) => {
+const FeedbackDataGrid = ({
+  systemData,
+  feedbackData,
+  systemId,
+  pastDateRange,
+}) => {
   const gridApi = useRef(null);
   const gridColumnApi = useRef(null);
 
@@ -47,6 +52,14 @@ const FeedbackDataGrid = ({ feedbackData, systemId, pastDateRange }) => {
           {
             headerName: 'System ID',
             field: 'systemId',
+          },
+          {
+            headerName: 'System Name',
+            cellRenderer: props => {
+              return systemData.find(
+                data => data.systemId === props.data.systemId,
+              ).systemName;
+            },
           },
           {
             headerName: 'User ID',
