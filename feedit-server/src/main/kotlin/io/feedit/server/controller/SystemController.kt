@@ -19,7 +19,7 @@ class SystemController(
     }
 
     @GetMapping("/retrieve/all")
-    fun retreiveAllRegisteredSystems() : MutableIterable<System> {
+    fun retreiveAllRegisteredSystems(): MutableIterable<System> {
         logger.info("Querying all registered systems in Feedit")
         return systemService.retrieveAllSystems()
     }

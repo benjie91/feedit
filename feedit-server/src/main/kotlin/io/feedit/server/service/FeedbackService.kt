@@ -1,7 +1,6 @@
 package io.feedit.server.service
 
 import io.feedit.server.domain.Feedback
-import io.feedit.server.domain.System
 import io.feedit.server.repository.FeedbackRepository
 import io.feedit.server.repository.SystemRepository
 import org.slf4j.LoggerFactory
