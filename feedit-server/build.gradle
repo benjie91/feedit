@@ -25,7 +25,7 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-starter-data-jpa")
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
-  runtimeOnly("org.postgresql:postgresql")
+  implementation("org.postgresql:postgresql")
   runtimeOnly("org.springframework.boot:spring-boot-devtools")
 
   // Junit 5 for testing

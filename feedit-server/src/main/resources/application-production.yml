@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://feedit-database:5432/feedit
+    username: feedit
+    password: password
