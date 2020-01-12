@@ -7,6 +7,8 @@ plugins {
   id "org.jlleitschuh.gradle.ktlint" version "8.2.0"
   id "org.springframework.boot" version "2.1.8.RELEASE"
   id "io.spring.dependency-management" version "1.0.8.RELEASE"
+  id 'com.google.cloud.tools.jib' version '1.8.0'
+  id 'com.moowork.node' version '1.3.1'
 }
 
 repositories {
@@ -38,3 +40,25 @@ dependencies {
 test {
   useJUnitPlatform()
 }
+
+task copyWebApp(type: Copy) {
+  from "${rootDir}/feedit-frontend/build"
+  into 'build/resources/main/static/.'
+}
+
+task appYarnInstall(type: YarnTask) {
+  description = "Installs all dependencies from package.json"
+  println("${rootDir}")
+  workingDir = file("${rootDir}/feedit-frontend")
+  args = ["install"]
+}
+
+task appYarnBuild(type: YarnTask) {
+  description = "Builds production version of the webapp"
+  workingDir = file("${rootDir}/feedit-frontend")
+  args = ["build"]
+}
+
+appYarnBuild.dependsOn appYarnInstall
+copyWebApp.dependsOn appYarnBuild
+compileJava.dependsOn copyWebApp
