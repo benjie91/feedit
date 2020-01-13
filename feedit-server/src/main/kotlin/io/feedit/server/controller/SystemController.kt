@@ -14,8 +14,14 @@ class SystemController(
     @PostMapping("/registration")
     @ResponseStatus(HttpStatus.CREATED)
     fun registerSystem(@RequestBody system: System) {
-        logger.info("Receive Request to register system: ${system.systemName} (${system.custodianName})")
+        logger.info("Receive request to register system: ${system.systemName} (${system.custodianName})")
         systemService.registerSystem(system)
+    }
+
+    @PostMapping("/registration/bulk")
+    fun registerMultipleSystems(@RequestBody systems: List<System>) {
+        logger.info("Receive request to register multiple systems into Feedit")
+        systemService.registerMultipleSystems(systems)
     }
 
     @GetMapping("/retrieve/all")
