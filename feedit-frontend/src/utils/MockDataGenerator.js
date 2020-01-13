@@ -39,7 +39,7 @@ export const generateMockFeedbacks = systemIds => {
   let mockData = [];
 
   systemIds.forEach(systemId => {
-    const numOfFeedbacks = getRandomIntInclusive(1, 300);
+    const numOfFeedbacks = getRandomIntInclusive(1000, 3000);
     const users = generateFakeUsers(50);
 
     times(numOfFeedbacks)(() => {
