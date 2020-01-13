@@ -1,7 +1,6 @@
 package io.feedit.server.controller
 
 import io.feedit.server.domain.Feedback
-import io.feedit.server.repository.FeedbackRepository
 import io.feedit.server.service.FeedbackService
 import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.*

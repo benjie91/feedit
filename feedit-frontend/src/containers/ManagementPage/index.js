@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Button, Card, Col, Row } from 'react-bootstrap';
 
 import PageHeader from '../../components/PageHeader';
@@ -6,9 +6,17 @@ import PageHeader from '../../components/PageHeader';
 import { generateMockFeedbacks } from '../../utils/MockDataGenerator';
 
 const ManagementPage = () => {
+  const messagesEndRef = useRef(null);
+
   const [consoleMessages, setConsoleMessages] = useState([
     'Welcome to feedit Management!',
   ]);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(scrollToBottom, [consoleMessages]);
 
   const populateDatabase = async () => {
     let cliMessages = consoleMessages
@@ -127,6 +135,7 @@ const ManagementPage = () => {
               {consoleMessages.map((msg, index) => (
                 <div key={index}>[Feedit-Management] ~ {msg}</div>
               ))}
+              <div ref={messagesEndRef} />
             </Card.Body>
           </Card>
         </Col>

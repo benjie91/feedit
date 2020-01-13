@@ -12,5 +12,5 @@ class System(
     @Id @GeneratedValue val systemId: Long? = null,
     @Column(unique = true) val systemName: String,
     val custodianName: String,
-    @CreationTimestamp val registeredDateTime: LocalDateTime ?= null
+    @CreationTimestamp val registeredDateTime: LocalDateTime? = null
 )
