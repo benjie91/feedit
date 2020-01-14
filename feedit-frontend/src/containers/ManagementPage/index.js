@@ -19,9 +19,16 @@ const ManagementPage = () => {
   useEffect(scrollToBottom, [consoleMessages]);
 
   const populateDatabase = async () => {
-    let cliMessages = consoleMessages
-      .concat('Populating database with mock data...')
-      .concat('Retrieving current registered system in Feedit...');
+    let cliMessages = consoleMessages.concat(
+      'Populating database with fake systems',
+    );
+    setConsoleMessages(cliMessages);
+
+    // Placeholders for generating fake systems
+
+    cliMessages = cliMessages.concat(
+      'Retrieving current registered system in Feedit...',
+    );
 
     setConsoleMessages(cliMessages);
 

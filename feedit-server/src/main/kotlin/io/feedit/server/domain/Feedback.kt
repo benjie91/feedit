@@ -1,7 +1,6 @@
 package io.feedit.server.domain
 
-import org.hibernate.annotations.CreationTimestamp
-import java.sql.Timestamp
+import java.time.LocalDateTime
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
@@ -14,6 +13,6 @@ class Feedback(
     val feedbackAnswer: String,
     val userId: String,
     val userGroup: String,
-    @CreationTimestamp val timestamp: Timestamp? = null,
+    val timestamp: LocalDateTime = LocalDateTime.now(),
     @Id @GeneratedValue val feedbackId: Long? = null
 )
