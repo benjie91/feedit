@@ -33,19 +33,26 @@ If you want to reset the layout to the original position, click the “Reset Lay
 
 ![](images/9%20Dashboard%20Reset%20Layout.png)
 
+The example below is where the sequence filter is.
+
+![](images/10%20data%20grid%20sequence.png)
+
+When hovering across the data points for both the bar chart and line chart, there will be toast that will provide more details about that particular data point. 
+
+![](images/11%20Chart%20hover.png)
+
+The example below shows how to use the System Name filter.
+
+![](images/5%20Dashboard%20Filter.png)
+
+The example below shows how to use the ag-Grid filter
+![](images/6%20data%20grid%20filter.png)
+
 If you would like to take advantage of the additional features of ag-Grid offers, switch the switch labelled “Dynamic” to Off. 
 
 This additional features using the filters in ag-Grid, being able to remove a column by right clicking on the column and dragging it above the grid, resizing the columns and moving the sequence of the columns by dragging a column to another position.
 
 There are still some features that will be active whether or not the switch labelled “Dynamic” is off. This features include being able to scroll through the data grid and being able to arrange the data based on their sequence.
-
-![](images/10%20data%20grid%20sequence.png)
-When hovering across the data points for both the bar chart and line chart, there will be toast that will provide more details about that particular data point.
-
-![](images/11%20Chart%20hover.png)
-![](images/5%20Dashboard%20Filter.png)
-![](images/6%20data%20grid%20filter.png)
-
 
 ## System Interface to Feedit
 Post Request - http://server-name:17012/feedback/create
