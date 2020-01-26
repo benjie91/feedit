@@ -6,45 +6,28 @@ import Line from '../../components/LineChart';
 import FeedbackDataGrid from '../../components/FeedbackDataGrid';
 import { Button } from 'react-bootstrap';
 import Spacer from 'react-spacer';
-const ResponsiveReactGridLayout = WidthProvider(Responsive);
-const originalLayouts = getFromLS('layouts') || {};
 
-/**
- * This layout demonstrates how to sync multiple responsive layouts to localstorage.
- */
+const ResponsiveReactGridLayout = WidthProvider(Responsive);
+
 export default class ResponsiveLocalStorageLayout extends React.PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      layouts: JSON.parse(JSON.stringify(originalLayouts)),
+      layouts: getFromLS('layouts') || {},
     };
   }
 
-  static get defaultProps() {
-    return {
-      className: 'layout',
-      cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
-      // rowHeight: 30,
-    };
-  }
-
-  resetLayout() {
+  resetLayout = () => {
     this.setState({ layouts: {} });
-  }
+  };
 
-  onLayoutChange(layout, layouts) {
+  onLayoutChange = (layout, layouts) => {
     saveToLS('layouts', layouts);
     this.setState({ layouts });
-  }
+  };
 
   render() {
-    let systemData = this.props.systemData;
-    let feedbackData = this.props.feedbackData;
-    let systemId = this.props.systemId;
-    let pastDateRange = this.props.pastDateRange;
-    let dynamic = this.props.dynamic;
-
     return (
       <div>
         <div style={{ display: 'flex' }}>
@@ -65,31 +48,31 @@ export default class ResponsiveLocalStorageLayout extends React.PureComponent {
           onLayoutChange={(layout, layouts) =>
             this.onLayoutChange(layout, layouts)
           }
-          isResizable={dynamic}
-          isDraggable={dynamic}
+          isResizable={this.props.dynamic}
+          isDraggable={this.props.dynamic}
         >
           <div
-            key="1"
-            data-grid={{ w: 5, h: 2, x: 0, y: 0 }}
+            key="feedit-barchart"
+            data-grid={{ w: 6, h: 3, x: 0, y: 0, isResizable: false }}
             style={{ padding: '20px' }}
           >
             <Bar
-              systemData={systemData}
-              feedbackData={feedbackData}
-              systemId={systemId}
-              pastDateRange={pastDateRange}
+              systemData={this.props.systemData}
+              feedbackData={this.props.feedbackData}
+              systemId={this.props.systemId}
+              pastDateRange={this.props.pastDateRange}
             />
           </div>
           <div
-            key="2"
-            data-grid={{ w: 5, h: 2, x: 6, y: 0 }}
+            key="feedit-linechart"
+            data-grid={{ w: 6, h: 3, x: 6, y: 0, isResizable: false }}
             style={{ padding: '20px' }}
           >
             <Line
-              systemData={systemData}
-              feedbackData={feedbackData}
-              systemId={systemId}
-              pastDateRange={pastDateRange}
+              systemData={this.props.systemData}
+              feedbackData={this.props.feedbackData}
+              systemId={this.props.systemId}
+              pastDateRange={this.props.pastDateRange}
             />
           </div>
           <div
@@ -98,10 +81,10 @@ export default class ResponsiveLocalStorageLayout extends React.PureComponent {
             style={{ padding: '20px' }}
           >
             <FeedbackDataGrid
-              systemData={systemData}
-              feedbackData={feedbackData}
-              systemId={systemId}
-              pastDateRange={pastDateRange}
+              systemData={this.props.systemData}
+              feedbackData={this.props.feedbackData}
+              systemId={this.props.systemId}
+              pastDateRange={this.props.pastDateRange}
             />
           </div>
         </ResponsiveReactGridLayout>

@@ -127,104 +127,93 @@ const DashboardPage = () => {
 
   return (
     <React.Fragment>
-      <div
-        style={{
-          position: 'sticky',
-          top: '57px',
-          backgroundColor: 'white',
-          padding: '15px',
-          zIndex: '1000',
-        }}
-        className="shadow p-3 bg-white rounded"
-      >
-        <div style={{ display: 'flex' }}>
-          <PageHeader
-            header="Feedback Dashboard"
-            fontAwesomeIcon="chart-line"
-          />
-          <Spacer grow="1" />
+      <PageHeader
+        header="Feedback Dashboard"
+        fontAwesomeIcon="chart-line"
+        rightElement={
+          <div style={{ display: 'flex' }}>
+            <h3>
+              Unread: <span style={{ color: unreadColour }}>{a}</span>
+            </h3>
+            <h3 style={{ marginLeft: '30px' }}>
+              Dynamic:{' '}
+              <BootstrapSwitchButton
+                checked={true}
+                height={15}
+                onlabel="On"
+                offlabel="Off"
+                onChange={() => {
+                  setDynamic(!dynamic);
+                  // ResponsiveLocalStorageLayout(resetLayout())
+                }}
+              />
+            </h3>
+          </div>
+        }
+      />
 
-          {/*<Spacer width="12px" />*/}
-          <h3>Unread:</h3>
-          <Spacer width="12px" />
-          <h3 style={{ color: unreadColour }}> {a} </h3>
-          <Spacer width="12px" />
-          <h3>Dynamic:</h3>
-          <Spacer width="12px" />
-          <BootstrapSwitchButton
-            checked={true}
-            height={15}
-            onlabel="On"
-            offlabel="Off"
-            onChange={() => {
-              setDynamic(!dynamic);
-              // ResponsiveLocalStorageLayout(resetLayout())
-            }}
-          />
-        </div>
-        <Accordion
-          defaultActiveKey="0"
-          style={{
-            border: '1px solid #ddd',
-          }}
-        >
-          <Accordion.Toggle as={Card.Header} eventKey="0">
-            <h3 style={{ margin: '0px' }}>Filters</h3>
-          </Accordion.Toggle>
-          <Accordion.Collapse eventKey="0">
-            <Card.Body>
-              <Form>
-                <Form.Row>
-                  <Form.Group as={Col} md="4">
-                    <Form.Label>System</Form.Label>
-                    <Form.Text>
-                      <Select
-                        className="basic-single"
-                        classNamePrefix="select"
-                        defaultValue={systemOptions[0]}
-                        isLoading={fetchStatus.status === 'fetching'}
-                        name="color"
-                        options={systemOptions}
-                        onChange={selectedOption => {
-                          setSystemId(selectedOption.value);
+      <Accordion
+        defaultActiveKey="0"
+        style={{
+          border: '1px solid #ddd',
+        }}
+      >
+        <Accordion.Toggle as={Card.Header} eventKey="0">
+          <h3 style={{ margin: '0px', fontSize: '20px' }}>Filters</h3>
+        </Accordion.Toggle>
+        <Accordion.Collapse eventKey="0">
+          <Card.Body>
+            <Form>
+              <Form.Row>
+                <Form.Group as={Col} md="4">
+                  <Form.Label>System</Form.Label>
+                  <Form.Text>
+                    <Select
+                      className="basic-single"
+                      classNamePrefix="select"
+                      defaultValue={systemOptions[0]}
+                      isLoading={fetchStatus.status === 'fetching'}
+                      name="color"
+                      options={systemOptions}
+                      onChange={selectedOption => {
+                        setSystemId(selectedOption.value);
+                      }}
+                    />
+                  </Form.Text>
+                </Form.Group>
+                <Form.Group as={Col} md="4">
+                  <Form.Label>Past Date Range</Form.Label>
+                  <Form.Text>
+                    <ButtonGroup>
+                      <Button
+                        onClick={() => {
+                          setPastDateRange('');
                         }}
-                      />
-                    </Form.Text>
-                  </Form.Group>
-                  <Form.Group as={Col} md="4">
-                    <Form.Label>Past Date Range</Form.Label>
-                    <Form.Text>
-                      <ButtonGroup>
-                        <Button
-                          onClick={() => {
-                            setPastDateRange('');
-                          }}
-                        >
-                          Show All
-                        </Button>
-                        <Button
-                          onClick={() => {
-                            setPastDateRange('Week');
-                          }}
-                        >
-                          Week
-                        </Button>
-                        <Button
-                          onClick={() => {
-                            setPastDateRange('Year');
-                          }}
-                        >
-                          Year
-                        </Button>
-                      </ButtonGroup>
-                    </Form.Text>
-                  </Form.Group>
-                </Form.Row>
-              </Form>
-            </Card.Body>
-          </Accordion.Collapse>
-        </Accordion>
-      </div>
+                      >
+                        Show All
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          setPastDateRange('Week');
+                        }}
+                      >
+                        Week
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          setPastDateRange('Year');
+                        }}
+                      >
+                        Year
+                      </Button>
+                    </ButtonGroup>
+                  </Form.Text>
+                </Form.Group>
+              </Form.Row>
+            </Form>
+          </Card.Body>
+        </Accordion.Collapse>
+      </Accordion>
       <ResponsiveLocalStorageLayout
         systemData={systemData}
         feedbackData={feedbackData}
