@@ -8,6 +8,7 @@ import javax.persistence.Id
 @Entity
 class Feedback(
     val systemId: Long,
+    val unread: Boolean = false,
     val feedbackType: String,
     val feedbackQuestion: String,
     val feedbackAnswer: String,

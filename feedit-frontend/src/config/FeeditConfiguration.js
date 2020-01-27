@@ -1,4 +1,4 @@
 export const feeditConfig = {
-  useDataFromServer: false,
+  useDataFromServer: true,
   numberOfMockSystem: 10,
 };
