@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 
 import MenuItem from './MenuItem';
+import MenuSeparator from './MenuSeparator';
 
 const SideMenu = ({
   customStyle,
@@ -36,13 +37,7 @@ const SideMenu = ({
         fontAwesomeIcon="cheese"
         minimized={!sideMenuExpanded}
       />
-      <hr
-        style={{
-          marginBottom: '0px',
-          marginTop: '10px',
-          backgroundColor: 'grey',
-        }}
-      />
+      <MenuSeparator />
       <MenuItem
         item="Systems"
         onClick={() => {
@@ -59,6 +54,7 @@ const SideMenu = ({
         fontAwesomeIcon="chart-line"
         minimized={!sideMenuExpanded}
       />
+      <MenuSeparator />
       <MenuItem
         item="Management"
         onClick={() => {

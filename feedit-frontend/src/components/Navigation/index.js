@@ -22,12 +22,6 @@ const Navigation = () => {
         />
         <span>Feedit</span>
       </Navbar.Brand>
-      {/*<Navbar.Collapse id="basic-navbar-nav">*/}
-      {/*  <Nav className="mr-auto">*/}
-      {/*    <Nav.Link href="#home">Home</Nav.Link>*/}
-      {/*    <Nav.Link href="#dashboard">Dashboard</Nav.Link>*/}
-      {/*  </Nav>*/}
-      {/*</Navbar.Collapse>*/}
     </Navbar>
   );
 };
