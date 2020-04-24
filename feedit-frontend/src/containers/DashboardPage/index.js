@@ -24,6 +24,7 @@ import {
 import Spacer from 'react-spacer';
 import ResponsiveLocalStorageLayout from '../ResponsiveLocalStorageLayout';
 import BootstrapSwitchButton from 'bootstrap-switch-button-react/lib/bootstrap-switch-button-react';
+import ServerErrorPage from '../ServerErrorPage';
 
 const DashboardPage = () => {
   // Data and Fetching State
@@ -90,12 +91,7 @@ const DashboardPage = () => {
   if (fetchStatus.status === 'fetching') {
     return <LoadingPage />;
   } else if (fetchStatus.status === 'error') {
-    return (
-      <div>
-        <p>Fetch failed...</p>
-        <p>{fetchStatus.message}</p>
-      </div>
-    );
+    return <ServerErrorPage errMessage={fetchStatus.message} />;
   }
 
   // Fetch Complete
