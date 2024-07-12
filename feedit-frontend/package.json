@@ -9,7 +9,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/free-solid-svg-icons": "^5.12.0",
     "@fortawesome/react-fontawesome": "^0.1.8",
-    "ag-grid-community": "^22.1.1",
+    "ag-grid-community": "^32.0.1",
     "ag-grid-react": "^22.1.1",
     "bootstrap-switch-button-react": "^1.2.0",
     "chart.js": "^2.9.3",
